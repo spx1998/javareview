@@ -21,10 +21,14 @@ public class Sort {
 //        test.shellSort(array);
 //        test.heapSort(array);
 //        test.mergeSort(array);
-        test.quickSort(array);
-        System.out.println(Arrays.toString(array));
-
+//        test.quickSort(array);
+//        System.out.println(Arrays.toString(array));
+        //基数排序所用的序列： 125 361 88 170 291 66 103 234
+        int[] array2 = new int[]{125, 361, 88, 170, 291, 66, 103, 234};
+        test.radixSort(array2,1000);
+        System.out.println(Arrays.toString(array2));
     }
+
 
 
     //交换两元素的位置
@@ -197,6 +201,30 @@ public class Sort {
             swap(array,low,high);
         }
         return low;
+    }
+    //基数排序
+    private void radixSort(int[] array,int n) {
+        int array2[][] = new int[10][array.length];
+        int tempArray[]=new int[10];
+        int k=0;
+        for(int x=10;x<=n;){
+            for(int i=0;i<array.length;i++){
+                int temp = array[i]/(x/10)%10;
+                array2[temp][tempArray[temp]] = array[i];
+                tempArray[temp]++;
+            }
+            for(int i=0;i<10;i++){
+                if(tempArray[i]!=0){
+                    for(int j=0;j<tempArray[i];j++){
+                        array[k] = array2[i][j];
+                        k++;
+                    }
+                    tempArray[i]=0;
+                }
+            }
+            k=0;
+            x*=10;
+        }
     }
 
 }
