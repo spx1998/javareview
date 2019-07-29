@@ -1,4 +1,6 @@
-package Algorithms.Tree;
+package Algorithms.tree;
+
+import Algorithms.datastructure.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +40,19 @@ public class Traverse {
         test.traverse(root);
     }
     //前序递归
-    private void preTraverse1(TreeNode root){
+    public void preTraverse1(TreeNode root){
         if(root!=null) {
-            System.out.print(root.data+" ");
+            System.out.print(root.val +" ");
             preTraverse1(root.leftChild);
             preTraverse1(root.rightChild);
         }
     }
     //前序非递归
-    private void preTraverse2(TreeNode root){
+    public void preTraverse2(TreeNode root){
         Stack<TreeNode> stack =new Stack<>();
         while (root!=null||!stack.empty()){
             while (root!=null) {
-                System.out.print(root.data + " ");
+                System.out.print(root.val + " ");
                 stack.push(root);
                 root = root.leftChild;
             }
@@ -60,15 +62,15 @@ public class Traverse {
         }
     }
     //中序递归
-    private void inTraverse1(TreeNode root){
+    public void inTraverse1(TreeNode root){
         if (root!=null){
             inTraverse1(root.leftChild);
-            System.out.print(root.data+" ");
+            System.out.print(root.val +" ");
             inTraverse1(root.rightChild);
         }
     }
     //中序非递归
-    private void inTraverse2(TreeNode root){
+    public void inTraverse2(TreeNode root){
         Stack<TreeNode> stack =new Stack<>();
         while (root!=null||!stack.empty()){
             while (root!=null){
@@ -76,27 +78,27 @@ public class Traverse {
                 root = root.leftChild;
             }
             if(!stack.empty()){
-                System.out.print(stack.peek().data+" ");
+                System.out.print(stack.peek().val +" ");
                 root = stack.pop().rightChild;
             }
         }
     }
     //后序递归
-    private void postTraverse1(TreeNode root){
+    public void postTraverse1(TreeNode root){
         if (root!=null){
             postTraverse1(root.leftChild);
             postTraverse1(root.rightChild);
-            System.out.print(root.data+" ");
+            System.out.print(root.val +" ");
         }
     }
     //后序非递归方法1：看作先右后左的先序遍历的倒序。
     //1376254->4526731
-    private void postTraverse2(TreeNode root){
+    public void postTraverse2(TreeNode root){
         Stack<TreeNode> stack =new Stack<>();
         Stack<Integer> integerStack =new Stack<>();
         while(root!=null||!stack.empty()){
             while (root!=null){
-                integerStack.push(root.data);
+                integerStack.push(root.val);
                 stack.push(root);
                 root = root.rightChild;
             }
@@ -109,16 +111,21 @@ public class Traverse {
         }
     }
     //层序遍历
-    private void traverse(TreeNode root){
+    public void traverse(TreeNode root){
         List<TreeNode> list =new ArrayList<>();
         int i =0;
         if(root!=null)
             list.add(root);
         while (root!=null){
-            System.out.print(root.data + " ");
-            list.add(root.leftChild);
-            list.add(root.rightChild);
-            root = list.get(++i);
+            System.out.print(root.val + " ");
+            if(root.leftChild!=null)
+                list.add(root.leftChild);
+            if(root.rightChild!=null)
+                list.add(root.rightChild);
+            i++;
+            if(i<list.size())
+                root = list.get(i);
+            else break;
         }
     }
 }

@@ -204,13 +204,13 @@ public class Sort {
     }
     //基数排序
     private void radixSort(int[] array,int n) {
-        int array2[][] = new int[10][array.length];
-        int tempArray[]=new int[10];
+        int[][] array2 = new int[10][array.length];
+        int[] tempArray = new int[10];
         int k=0;
         for(int x=10;x<=n;){
-            for(int i=0;i<array.length;i++){
-                int temp = array[i]/(x/10)%10;
-                array2[temp][tempArray[temp]] = array[i];
+            for (int value : array) {
+                int temp = value / (x / 10) % 10;
+                array2[temp][tempArray[temp]] = value;
                 tempArray[temp]++;
             }
             for(int i=0;i<10;i++){
