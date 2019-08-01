@@ -3,7 +3,7 @@ package Algorithms.JZoffer;
 public class Question11 {
     public static void main(String[] args) {
         Question11 question11 = new Question11();
-        question11.NumberOf1(10);
+        System.out.println(question11.NumberOf1(10));
 
     }
 
