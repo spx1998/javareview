@@ -24,8 +24,8 @@ public class Question4 {
         TreeNode root = new TreeNode(pre[p1]);
         for(int i=0;i<in.length;i++){
             if(root.val==in[i]){
-                root.leftChild = reConstructBinaryTree(pre,in,p1+1,p1+i-i1,i1,i-1);
-                root.rightChild = reConstructBinaryTree(pre,in,p1+i-i1+1,p2,i+1,i2);
+                root.left = reConstructBinaryTree(pre,in,p1+1,p1+i-i1,i1,i-1);
+                root.right = reConstructBinaryTree(pre,in,p1+i-i1+1,p2,i+1,i2);
             }
         }
         return root;

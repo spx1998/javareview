@@ -2,8 +2,8 @@ package Algorithms.datastructure;
 
 public class TreeNode {
     public int val;
-    public TreeNode rightChild;
-    public TreeNode leftChild;
+    public TreeNode right;
+    public TreeNode left;
     public TreeNode(int x){
         val = x;
     }
