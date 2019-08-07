@@ -144,22 +144,21 @@ public class Sort {
         mSort(array,array,0,array.length-1);
     }
 
-    private void mSort(int[] array1, int[] array2, int s, int t) {
-        int m;
-        int[] array3 = new int[10];
+    private void mSort(int[] compareArray, int[] sortArray, int s, int t) {
         if(s==t)
-            array2[s] = array1[s];
+            sortArray[s] = compareArray[s];
         else {
-            m=(s+t)/2;
-            mSort(array1,array3,s,m);
-            mSort(array1,array3,m+1,t);
-            merge(array3,array2,s,m,t);
+            int[] sArray = new int[10];
+            int m=(s+t)/2;
+            mSort(compareArray,sArray,s,m);
+            mSort(compareArray,sArray,m+1,t);
+            merge(sArray,sortArray,s,m,t);
         }
     }
 
     private void merge(int[] array3, int[] array2, int s, int m, int t) {
         int j=0,k=0,l=0;
-        for( j=m+1,k=s;s<=m&&j<=t;k++){
+        for( k=s,j=m+1;s<=m&&j<=t;k++){
             if((array3[s]<array3[j])){
                 array2[k]=array3[s++];
 
@@ -167,12 +166,12 @@ public class Sort {
         }
         if(s<=m){
             for( l=0;l<=m-s;l++){
-                array2[k]=array3[s+l];
+                array2[k++]=array3[s+l];
             }
         }
         if(j<=t){
             for( l=0;l<=t-j;l++){
-                array2[k]=array3[j+l];
+                array2[k++]=array3[j+l];
             }
         }
     }
@@ -182,7 +181,7 @@ public class Sort {
     }
 
     private void qSort(int[] array, int low, int high) {
-        int pivot=0;
+        int pivot;
         if(low<high){
             pivot=partition(array,low,high);
             qSort(array,low,pivot-1);
@@ -204,10 +203,10 @@ public class Sort {
     }
     //基数排序
     private void radixSort(int[] array,int n) {
-        int[][] array2 = new int[10][array.length];
         int[] tempArray = new int[10];
         int k=0;
         for(int x=10;x<=n;){
+            int[][] array2 = new int[10][array.length];
             for (int value : array) {
                 int temp = value / (x / 10) % 10;
                 array2[temp][tempArray[temp]] = value;
