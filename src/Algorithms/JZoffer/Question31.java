@@ -12,10 +12,10 @@ public class Question31 {
     public String PrintMinNumber(int[] numbers) {
         if(numbers==null||numbers.length==0) return "";
         int digit =0;
-        for(int i=0;i<numbers.length;i++){
-            int x= String.valueOf(numbers[i]).length();
-            if(x>digit)
-                digit=x;
+        for (int value : numbers) {
+            int x = String.valueOf(value).length();
+            if (x > digit)
+                digit = x;
         }
         HashMap<Integer,String> hashMap = new HashMap<>();
         for (int number : numbers) {
