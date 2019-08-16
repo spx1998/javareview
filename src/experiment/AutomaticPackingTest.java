@@ -12,6 +12,8 @@ public class AutomaticPackingTest {
         Integer e = 321;
         Integer f = 321;
         Long g = 3L;
+        Integer newInteger = new Integer(1);
+        System.out.println(newInteger==a);//false 如string一样
         System.out.println(c==d);//true 3在缓存池中
         System.out.println(e==f);//false 321 不在缓存池中
         System.out.println((a+b)==c);//true ==遇到算数运算符 则自动拆箱为int 3==3
