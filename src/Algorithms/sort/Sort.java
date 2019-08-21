@@ -1,6 +1,7 @@
 package Algorithms.sort;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * @author 45779
@@ -24,9 +25,11 @@ public class Sort {
 //        test.quickSort(array);
 //        System.out.println(Arrays.toString(array));
         //基数排序所用的序列： 125 361 88 170 291 66 103 234
-        int[] array2 = new int[]{125, 361, 88, 170, 291, 66, 103, 234};
-        test.radixSort(array2,1000);
-        System.out.println(Arrays.toString(array2));
+//        int[] array2 = new int[]{125, 361, 88, 170, 291, 66, 103, 234};
+//        test.radixSort(array2,1000);
+//        test.mergeSort2(array);
+        test.quickSort2(array);
+        System.out.println(Arrays.toString(array));
     }
 
 
@@ -155,23 +158,23 @@ public class Sort {
             merge(sArray,sortArray,s,m,t);
         }
     }
-
-    private void merge(int[] array3, int[] array2, int s, int m, int t) {
-        int j=0,k=0,l=0;
+    //s是此次归并的启点 m是归并区间的中间点，t是终点： start mid tail
+    private void merge(int[] orginArray, int[] sortArray, int s, int m, int t) {
+        int j,k,l;
         for( k=s,j=m+1;s<=m&&j<=t;k++){
-            if((array3[s]<array3[j])){
-                array2[k]=array3[s++];
+            if((orginArray[s]<orginArray[j])){
+                sortArray[k]=orginArray[s++];
 
-            }else array2[k]=array3[j++];
+            }else sortArray[k]=orginArray[j++];
         }
         if(s<=m){
             for( l=0;l<=m-s;l++){
-                array2[k++]=array3[s+l];
+                sortArray[k++]=orginArray[s+l];
             }
         }
         if(j<=t){
             for( l=0;l<=t-j;l++){
-                array2[k++]=array3[j+l];
+                sortArray[k++]=orginArray[j+l];
             }
         }
     }
@@ -223,6 +226,63 @@ public class Sort {
             }
             k=0;
             x*=10;
+        }
+    }
+
+    //归并排序的非递归实现
+    private void mergeSort2(int[] array){
+        int[] sortArray = new int[array.length];
+        int k=1;
+        while (k<array.length){
+            mergePass(array,sortArray,k,array.length);
+            k*=2;
+            mergePass(sortArray,array,k,array.length);
+            k*=2;
+        }
+    }
+
+    private void mergePass(int[] array, int[] sortArray, int k, int length) {
+        int i=0;
+        int j;
+        while (i<=length-2*k){
+            merge(array,sortArray,i,i+k-1,i+2*k-1);
+            i=i+2*k;
+        }
+        if(i<length-k)
+            merge(array,sortArray,i,i+k-1,length-1);
+        else
+            for(j=i;j<length;j++){
+                sortArray[j]=array[j];
+            }
+    }
+
+    //快速排序的非递归实现
+    private void quickSort2(int[] array) {
+        if (array == null)
+            return;
+        qSort2(array, 0, array.length - 1);
+    }
+    private void qSort2(int[] a, int low, int high) {
+        int pivot;
+        if (low >= high)
+            return;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(low);
+        stack.push(high);
+        while (!stack.empty()) {
+            // 先弹出high,再弹出low
+            high = stack.pop();
+            low = stack.pop();
+            pivot = partition(a, low, high);
+            // 先压low,再压high
+            if (low < pivot - 1) {
+                stack.push(low);
+                stack.push(pivot - 1);
+            }
+            if (pivot + 1 < high) {
+                stack.push(pivot + 1);
+                stack.push(high);
+            }
         }
     }
 
