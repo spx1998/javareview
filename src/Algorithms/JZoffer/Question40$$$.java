@@ -1,35 +1,45 @@
 package Algorithms.JZoffer;
 
 import java.util.ArrayList;
-//双指针的方法 类似于滑动窗口 也类似于32题
+import java.util.HashMap;
+//异或的解法更佳
 public class Question40$$$ {
     public static void main(String[] args) {
         Question40$$$ question40$$$ = new Question40$$$();
-        question40$$$.FindContinuousSequence(4);
+        question40$$$.FindNumsAppearOnce2(new int[]{1,1,2,2,3,4}, new int[]{0}, new int[]{0});
     }
-    public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
-        int first = 1;
-        int last = 2;
-        int curSum =3;
-        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
-        if(sum<3)return lists;
-        while (first<last){
-            if(curSum<sum){
-                last=last+1;
-                curSum = curSum+last;
-            }else if(curSum>sum){
-                curSum = curSum-first;
-                first = first+1;
-            }else if(curSum == sum){
-                ArrayList<Integer> list =new ArrayList<Integer>();
-                for(int i=first;i<=last;i++){
-                    list.add(i);
-                }
-                lists.add(list);
-                first = first+1;
-                curSum = curSum-first;
+    public void FindNumsAppearOnce(int[] array, int[] num1, int[] num2) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i : array) {
+            if (hashMap.get(i) == null) {
+                hashMap.put(i, 1);
+            } else hashMap.put(i, 2);
+        }
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (Integer key : hashMap.keySet()) {
+            if (hashMap.get(key) == 1) arrayList.add(key);
+        }
+        num1[0] = arrayList.get(0);
+        num2[0] = arrayList.get(1);
+    }
+
+    public void FindNumsAppearOnce2(int[] array, int[] num1, int[] num2) {
+        int temp =array[0];
+        for(int i=1;i<array.length;i++){
+            temp ^=array[i];
+        }
+        int count =0;
+        while ((temp%2)!=1){
+            temp =temp>>1;
+            count++;
+        }
+        for (int value : array) {
+            if ((value >> count) % 2 == 1) {
+                num1[0] ^= value;
+            }
+            if ((value >> count) % 2 == 0) {
+                num2[0] ^= value;
             }
         }
-        return lists;
     }
 }

@@ -1,30 +1,45 @@
 package Algorithms.JZoffer;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 public class Question27 {
     public static void main(String[] args) {
         Question27 question27 = new Question27();
-        int[] ints = {1,3,5,3,4,2,7,1,3,3,3,3,3};
-        System.out.println(question27.MoreThanHalfNum_Solution(ints));
+
+        System.out.println(Arrays.toString(question27.Permutation("abc").toArray()));
+    }
+    private ArrayList<String> arrayList ;
+    public ArrayList<String> Permutation(String str) {
+        if(str==null||str.equals(""))return new ArrayList<>();
+        arrayList = new ArrayList<>();
+        createString(str,new ArrayList<>());
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(arrayList);
+        return new ArrayList<>(hashSet);
     }
 
-    public int MoreThanHalfNum_Solution(int[] array) {
-        HashMap<Integer,Integer> hashMap = new HashMap<>();
-        for (int i:array){
-            if(!hashMap.containsKey(i)){
-                hashMap.put(i,1);
-                continue;
+    private void createString(String str,ArrayList<Character> charList) {
+        if(str.equals("")) {
+            StringBuilder sb =new StringBuilder();
+            for (char c:charList){
+                sb.append(c);
             }
-            hashMap.put(i,hashMap.get(i)+1);
+            arrayList.add(sb.toString());
+           return;
         }
-        int temp =0;
-        for(Integer i :hashMap.keySet()){
-            if(hashMap.get(i)>array.length/2){
-                temp = i;
-                break;
+        char[] cs = str.toCharArray();
+        for(int i=0;i<cs.length;i++){
+            charList.add(cs[i]);
+            StringBuilder newstr =new StringBuilder() ;
+            for(int j=0;j<cs.length;j++){
+                if(j==i){
+                    continue;
+                }
+                newstr.append(cs[j]);
             }
+            createString(newstr.toString(),charList);
+            charList.remove(charList.size()-1);
         }
-        return temp;
     }
 }

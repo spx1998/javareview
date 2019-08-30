@@ -1,28 +1,37 @@
 package Algorithms.JZoffer;
 
+import Algorithms.datastructure.TreeNode;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Question22 {
     public static void main(String[] args) {
-        Question22 question22 =new Question22();
-        int[] array = {5,4,3,2,1};
-        System.out.println(question22.VerifySquenceOfBST(array));
+        Question22 question22 = new Question22();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        question22.PrintFromTopToBottom(null);
+
     }
-    public boolean VerifySquenceOfBST(int [] sequence) {
-        if(sequence.length==0)return false;
-        return judge(sequence,0,sequence.length-1);
-    }
-    private boolean judge(int[] sequence, int pre, int end){
-        if(end<=pre)return true;
-        int j=0;
-        for (int i=pre;i<=end;i++){
-            j=i;
-            if(sequence[i]>sequence[end]){
-                break;
+
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if (root==null)return arrayList;
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode treeNode = queue.poll();
+            if(treeNode.left!=null){
+                queue.offer(treeNode.left);
             }
+            if(treeNode.right!=null){
+                queue.offer(treeNode.right);
+            }
+            arrayList.add(treeNode.val);
         }
-        for(int i=j;i<end;i++){
-            if(sequence[i]<sequence[end])
-                return false;
-        }
-        return judge(sequence,pre,j-1)&&judge(sequence,j,end-1);
+        return arrayList;
     }
 }

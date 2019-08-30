@@ -1,60 +1,47 @@
 package Algorithms.JZoffer;
 
-import Algorithms.datastructure.TreeNode;
+import Algorithms.datastructure.RandomListNode;
 
-import java.util.ArrayList;
-import java.util.Stack;
-
-/**
- *        4
- *      2   5
- *    1  3
- */
 public class Question25 {
     public static void main(String[] args) {
         Question25 question25 = new Question25();
-        TreeNode root =new TreeNode(4);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(1);
-        root.left.right = new TreeNode(3);
-        root.right = new TreeNode(5);
-        TreeNode treeNode = question25.Convert(root);
-        while (treeNode!=null){
-            System.out.println(treeNode.toString());
-            treeNode = treeNode.right;
-        }
+        RandomListNode head = new RandomListNode(1);
+        question25.Clone(head);
     }
-    public TreeNode Convert(TreeNode pRootOfTree) {
-        if(pRootOfTree==null){
-            return null;
+    public RandomListNode Clone(RandomListNode pHead) {
+        if(pHead==null) return null;
+        RandomListNode newHead = new RandomListNode(pHead.label);
+        RandomListNode oldTemp = pHead.next;
+        RandomListNode newTemp = newHead;
+        while (oldTemp!=null){
+            newTemp.next = new RandomListNode(oldTemp.label);
+            newTemp = newTemp.next;
+            oldTemp = oldTemp.next;
         }
-        ArrayList<TreeNode> arrayList = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        while (pRootOfTree!=null||!stack.empty()){
-            while (pRootOfTree!=null){
-                stack.push(pRootOfTree);
-                pRootOfTree = pRootOfTree.left;
+        oldTemp = pHead;
+        newTemp = newHead;
+        while (oldTemp!=null){
+            if (oldTemp.random==null){
+                newTemp = newTemp.next;
+                oldTemp = oldTemp.next;
+                continue;
             }
-            if(!stack.empty()){
-                arrayList.add(stack.peek());
-                pRootOfTree = stack.pop().right;
+            RandomListNode randomListNode = newHead;
+            while (randomListNode!=null){
+                if(randomListNode.label == oldTemp.random.label){
+                    break;
+                }
+                randomListNode = randomListNode.next;
             }
+            newTemp.random = randomListNode;
+            newTemp = newTemp.next;
+            oldTemp = oldTemp.next;
         }
-        if(arrayList.size()==1){
-            return arrayList.get(0);
-        }
-        for (int i=0;i<arrayList.size();i++){
-            if(i==arrayList.size()-1){
-                arrayList.get(i).right = null;
-                arrayList.get(i).left = arrayList.get(i-1);
-            }else if(i==0){
-                arrayList.get(i).right = arrayList.get(i+1);
-                arrayList.get(i).left = null;
-            } else{
-                arrayList.get(i).right = arrayList.get(i+1);
-                arrayList.get(i).left = arrayList.get(i-1);
-            }
-        }
-        return arrayList.get(0);
+        return newHead;
     }
 }
+
+
+
+
+

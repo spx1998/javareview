@@ -1,32 +1,25 @@
 package Algorithms.JZoffer;
 
-import Algorithms.datastructure.TreeNode;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import Algorithms.datastructure.TreeLinkNode;
 
 public class Question57 {
-    boolean isSymmetrical(TreeNode pRoot){
-        if(pRoot==null)return true;
-        Queue<TreeNode> queue = new LinkedList<>();
-        TreeNode lhead ;
-        TreeNode rhead ;
-        queue.offer(pRoot.left);
-        queue.offer(pRoot.right);
-        while (!queue.isEmpty()){
-            lhead=queue.poll();
-            rhead=queue.poll();
-            if(rhead==null&&lhead==null)continue;
-            else if(rhead==null)return false;
-            else if(lhead==null)return false;
-            else if(lhead.val!=rhead.val)return false;
-            else {
-                queue.offer(lhead.left);
-                queue.offer(rhead.right);
-                queue.offer(lhead.right);
-                queue.offer(rhead.left);
+    public TreeLinkNode GetNext(TreeLinkNode pNode) {
+        if (pNode == null) return null;
+        if (pNode.right != null) {
+            pNode = pNode.right;
+            while (pNode.left != null) {
+                pNode = pNode.left;
             }
+            return pNode;
+        }else {
+            if(pNode.next==null)return null;
+            while (pNode.next!=null){
+                if(pNode==pNode.next.left)
+                    return pNode.next;
+                else
+                    pNode=pNode.next;
+            }
+            return null;
         }
-        return true;
     }
 }

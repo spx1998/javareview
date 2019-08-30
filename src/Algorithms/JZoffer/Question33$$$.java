@@ -2,7 +2,7 @@ package Algorithms.JZoffer;
 
 import java.util.ArrayList;
 
-public class Question32$$$ {
+public class Question33$$$ {
     public static void main(String[] args) {
 
     }

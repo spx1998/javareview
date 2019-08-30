@@ -1,37 +1,21 @@
 package Algorithms.JZoffer;
 
-import Algorithms.datastructure.TreeNode;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 public class Question21 {
-    public static void main(String[] args) {
-        Question21 question21 = new Question21();
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.right = new TreeNode(4);
-        question21.PrintFromTopToBottom(null);
-
-    }
-
-    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        if (root==null)return arrayList;
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            TreeNode treeNode = queue.poll();
-            if(treeNode.left!=null){
-                queue.offer(treeNode.left);
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        Stack<Integer> stack = new Stack<>();
+        int j=0;
+        for(int i=0;i<pushA.length;i++){
+            stack.push(pushA[i]);
+            while (!stack.empty()){
+                if(stack.peek()==popA[j]){
+                    stack.pop();
+                    j++;
+                }else break;
             }
-            if(treeNode.right!=null){
-                queue.offer(treeNode.right);
-            }
-            arrayList.add(treeNode.val);
         }
-        return arrayList;
+        if(j==popA.length)return true;
+        else return false;
     }
 }

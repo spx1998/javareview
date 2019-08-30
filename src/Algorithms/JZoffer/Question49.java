@@ -1,19 +1,25 @@
 package Algorithms.JZoffer;
 
-import java.util.HashSet;
-
 public class Question49 {
     public static void main(String[] args) {
+        Question49 question49 = new Question49();
+        System.out.println(question49.StrToInt("1a23"));
     }
-    public boolean duplicate(int numbers[], int length, int[] duplication) {
-        if(numbers==null)return false;
-        HashSet<Integer> hashSet = new HashSet<>();
-        for(int i:numbers){
-            if(!hashSet.add(i)){
-                duplication[0]=i;
-                return true;
-            }
+    public int StrToInt(String str) {
+        if(str.trim().equals(""))return 0;
+        char[] chars = str.toCharArray();
+        int flag =0;
+        if(chars[0]=='-')flag=1;
+        if(chars[0]=='+')flag=2;
+        int i;
+        int num=0;
+        if(flag==0)i=0;
+        else i=1;
+        for(;i<chars.length;i++){
+            if(chars[i]-48<0||chars[i]-48>=10)return 0;
+            num = num*10+chars[i]-48;
         }
-        return false;
+        if(flag==1) num=-num;
+        return num;
     }
 }

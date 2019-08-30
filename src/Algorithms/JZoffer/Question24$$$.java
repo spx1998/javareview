@@ -4,16 +4,16 @@ import Algorithms.datastructure.TreeNode;
 
 import java.util.ArrayList;
 
-public class Question23$$$ {
+public class Question24$$$ {
     public static void main(String[] args) {
-        Question23$$$ question23$$$ = new Question23$$$();
+        Question24$$$ question24$$$ = new Question24$$$();
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.left.left = new TreeNode(2);
         root.left.left.left = new TreeNode(1);
         root.left.right = new TreeNode(2);
         root.right = new TreeNode(5);
-        ArrayList<ArrayList<Integer>>arrayLists = question23$$$.FindPath(root,6);
+        ArrayList<ArrayList<Integer>>arrayLists = question24$$$.FindPath(root,6);
 
     }
     private    ArrayList<ArrayList<Integer>> arrayLists = new ArrayList<>();

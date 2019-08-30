@@ -1,6 +1,6 @@
 package Algorithms.JZoffer;
 //归并排序 每次排序都 计算当前范围内的逆序对数量
-public class Question34$$$ {
+public class Question35$$$ {
     private long cnt = 0;
     private int[] tmp;  // 在这里声明辅助数组，而不是在 merge() 递归函数中声明
 

@@ -1,17 +1,24 @@
 package Algorithms.JZoffer;
 
-import Algorithms.datastructure.ListNode;
-import java.util.HashMap;
-//还可以用快慢指针的方法
+import java.util.LinkedHashMap;
+
 public class Question54 {
-    public ListNode EntryNodeOfLoop(ListNode pHead){
-        HashMap<ListNode,Integer> hashMap = new HashMap<>();
-        while (pHead!=null){
-            hashMap.put(pHead,1);
-            pHead=pHead.next;
-            if(hashMap.get(pHead)!=null)
-                return pHead;
+    private LinkedHashMap<Character,Integer> hashMap = new LinkedHashMap<>();
+    public void Insert(char ch)
+    {
+        if(hashMap.get(ch)==null)
+            hashMap.put(ch,1);
+        else hashMap.remove(ch);
+    }
+    public char FirstAppearingOnce()
+    {
+        if(hashMap.size()==0)
+            return '#';
+        else {
+            for(char c:hashMap.keySet()){
+                return c;
+            }
         }
-        return null;
+        return '#';
     }
 }

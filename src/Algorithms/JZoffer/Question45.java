@@ -1,37 +1,27 @@
 package Algorithms.JZoffer;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Question45 {
     public static void main(String[] args) {
         Question45 question45 = new Question45();
-        System.out.println(question45.LastRemaining_Solution(15,3));
+        question45.isContinuous(new int[]{0,3,2,6,4});
     }
-
-    public int LastRemaining_Solution(int n, int m) {
-        if(n<=0) return -1;
-        if(n==1) return 0;
-        ArrayList<Integer> children = new ArrayList<>();
-        for(int i=0;i<n;i++){
-            children.add(i);
+    public boolean isContinuous(int[] numbers) {
+        int zeroCount =0;
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        for(int i:numbers){
+            if(i==0)zeroCount++;
+            else   treeSet.add(i);
         }
-        int num =0;
-        while (children.size()!=1){
-            for(int i=0;i<m;i++){
-               num++;
-               if(num==children.size())
-                   num=0;
-            }
-            if(num==children.size()){
-                children.remove(children.size()-1);
-                num=0;
-            }
-            if(num==0)children.remove(children.size()-1);
-            else {
-                num=num-1;
-                children.remove(num);
-            }
+        if(treeSet.size()+zeroCount<5)return false;
+        int max =0;
+        int min=14;
+        for (Integer integer : treeSet) {
+            int i =  integer;
+            if (i > max) max = i;
+            if (i < min) min = i;
         }
-        return children.get(0);
+        return max - min <= 4;
     }
 }

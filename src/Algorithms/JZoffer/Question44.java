@@ -1,27 +1,33 @@
 package Algorithms.JZoffer;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Question44 {
     public static void main(String[] args) {
-        Question44 question44 = new Question44();
-        question44.isContinuous(new int[]{0,3,2,6,4});
+        Question44 question44 =new Question44();
+
+        String s = question44.ReverseSentence(" ");
+        System.out.println("a"+s+"b");
     }
-    public boolean isContinuous(int[] numbers) {
-        int zeroCount =0;
-        TreeSet<Integer> treeSet = new TreeSet<>();
-        for(int i:numbers){
-            if(i==0)zeroCount++;
-            else   treeSet.add(i);
+    public String ReverseSentence(String str) {
+        //不一定是几个空格
+        if(str.trim().equals("")) return str;
+        char[] chars = str.toCharArray();
+        ArrayList<StringBuilder> arrayList = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        for(char c:chars){
+            if(c==' '){
+                arrayList.add(stringBuilder);
+                stringBuilder = new StringBuilder();
+                continue;
+            }
+            stringBuilder.append(c);
         }
-        if(treeSet.size()+zeroCount<5)return false;
-        int max =0;
-        int min=14;
-        for (Integer integer : treeSet) {
-            int i =  integer;
-            if (i > max) max = i;
-            if (i < min) min = i;
+        arrayList.add(stringBuilder);
+        String result = "";
+        for(int i=arrayList.size()-1;i>=0;i--){
+            result =result+arrayList.get(i)+" ";
         }
-        return max - min <= 4;
+        return result.trim();
     }
 }

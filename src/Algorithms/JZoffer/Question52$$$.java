@@ -1,8 +1,8 @@
 package Algorithms.JZoffer;
 
-public class Question51$$$ {
+public class Question52$$$ {
     public static void main(String[] args) {
-        Question51$$$ question51 = new Question51$$$();
+        Question52$$$ question51 = new Question52$$$();
         System.out.println(question51.match("aaa".toCharArray(),"ab*a*c*a".toCharArray()));
     }
     public boolean match(char[] str, char[] pattern){

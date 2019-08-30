@@ -4,53 +4,52 @@ import java.util.ArrayList;
 
 public class Question30 {
     public static void main(String[] args) {
-        Question30 question30 = new Question30();
-        System.out.println(question30.NumberOf1Between1AndN_Solution(10000));
+
     }
-    public int NumberOf1Between1AndN_Solution(int n) {//245
-        if(n<=0) return 0;
-        if(n<10) return 1;
+
+    public int FindGreatestSumOfSubArray(int[] array) {
+        if (array == null) {
+            return 0;
+        }
+        int maxNum = array[0];
         ArrayList<Integer> arrayList = new ArrayList<>();
-        int nn=n;
-        int digit=0;
-        while (nn!=0){
-            arrayList.add(nn%10);
-            nn /= 10;
-            digit += 1;
-        }
-        int[] nums = new int[digit-1];
-        nums[0]=1;
-        nn=10;
-        for(int i=1;i<nums.length;i++) {// 9 99
-            nums[i] = nn + 10* nums[i - 1];
-            nn *= 10; //100
-        }
-        int count= 0;
-//        nn = nn/10;
-        int x=n;
-        for(int i=arrayList.size()-1;i>=0;i--){ // 2 4 5
-            if(i==0){
-                if(arrayList.get(i)==0)
-                    break;
-                else {
-                    count =count +1;
-                    break;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > 0) {
+                int temp = 0;
+                for (int j = i; j < array.length; j++) {
+                    temp += array[j];
+                    if (array[j] > 0) {
+                        arrayList.add(temp);
+                    }
                 }
             }
-            if(arrayList.get(i)==0){
-                nn/=10;
-                continue;
-            }
-            x = x-arrayList.get(i)*nn;
-            if(arrayList.get(i)==1){
-
-                count = count+nums[i-1]+x+1;
-                nn/=10;
-                continue;
-            }
-            count = count + nn + arrayList.get(i)*nums[i-1];
-            nn/=10;
+            if (array[i] > maxNum)
+                maxNum = array[i];
         }
-        return count;
+        if (arrayList.size() == 0) {
+            return maxNum;
+        } else {
+            maxNum = arrayList.get(0);
+            for (Integer integer : arrayList) {
+                if (integer > maxNum) {
+                    maxNum = integer;
+                }
+            }
+        }
+        return maxNum;
+    }
+
+    //动态规划解法
+    public int FindGreatestSumOfSubArray2(int[] array) {
+        int[] dp = new int[array.length];
+        dp[0] = array[0];
+        int max = array[0];
+        for(int i=1;i<array.length;i++){
+            dp[i] = Math.max(dp[i-1]+array[i],array[i]);
+            if(dp[i]>max){
+                max = dp[i];
+            }
+        }
+        return max;
     }
 }

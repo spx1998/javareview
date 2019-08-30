@@ -1,44 +1,56 @@
 package Algorithms.JZoffer;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Question31 {
     public static void main(String[] args) {
-        Question31 question31= new Question31();
-        int[] ints = {1,11,111};
-        System.out.println(question31.PrintMinNumber(ints));
+        Question31 question31 = new Question31();
+        System.out.println(question31.NumberOf1Between1AndN_Solution(10000));
     }
-    public String PrintMinNumber(int[] numbers) {
-        if(numbers==null||numbers.length==0) return "";
-        int digit =0;
-        for (int value : numbers) {
-            int x = String.valueOf(value).length();
-            if (x > digit)
-                digit = x;
+    public int NumberOf1Between1AndN_Solution(int n) {//245
+        if(n<=0) return 0;
+        if(n<10) return 1;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int nn=n;
+        int digit=0;
+        while (nn!=0){
+            arrayList.add(nn%10);
+            nn /= 10;
+            digit += 1;
         }
-        HashMap<Integer,String> hashMap = new HashMap<>();
-        for (int number : numbers) {
-            StringBuilder temp = new StringBuilder(String.valueOf(number));
-            while (temp.length() != digit) {
-                temp.append(temp.charAt(temp.length() - 1));
+        int[] nums = new int[digit-1];
+        nums[0]=1;
+        nn=10;
+        for(int i=1;i<nums.length;i++) {// 9 99
+            nums[i] = nn + 10* nums[i - 1];
+            nn *= 10; //100
+        }
+        int count= 0;
+//        nn = nn/10;
+        int x=n;
+        for(int i=arrayList.size()-1;i>=0;i--){ // 2 4 5
+            if(i==0){
+                if(arrayList.get(i)==0)
+                    break;
+                else {
+                    count =count +1;
+                    break;
+                }
             }
-            if(hashMap.get(Integer.parseInt(String.valueOf(temp)))==null)
-                hashMap.put(Integer.parseInt(String.valueOf(temp)), String.valueOf(number));
-            else {
-                hashMap.put(Integer.parseInt(String.valueOf(temp)),hashMap.get(Integer.parseInt(String.valueOf(temp)))+ number);
+            if(arrayList.get(i)==0){
+                nn/=10;
+                continue;
             }
+            x = x-arrayList.get(i)*nn;
+            if(arrayList.get(i)==1){
+
+                count = count+nums[i-1]+x+1;
+                nn/=10;
+                continue;
+            }
+            count = count + nn + arrayList.get(i)*nums[i-1];
+            nn/=10;
         }
-        int[] keys = new int[hashMap.size()];
-        int i=0;
-        for(Integer integer:hashMap.keySet()){
-            keys[i++] =integer;
-        }
-        Arrays.sort(keys);
-        String str = "";
-        for(int key:keys){
-            str +=hashMap.get(key);
-        }
-        return str;
+        return count;
     }
 }
