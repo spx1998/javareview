@@ -24,5 +24,6 @@ public class Question66 {
             sum += i%10;
         }while((i = i/10) > 0);
         return sum;
+
     }
 }
