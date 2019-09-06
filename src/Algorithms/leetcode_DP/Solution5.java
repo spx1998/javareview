@@ -1,4 +1,4 @@
-package Algorithms.leecode;
+package Algorithms.leetcode_DP;
 
 /**
  * 最长回文子字符串问题

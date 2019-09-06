@@ -1,5 +1,9 @@
-package Algorithms.leecode;
+package Algorithms.leetcode_DP;
 
+/**
+ * 实现简单的正则
+ * 只有 . *
+ */
 public class Solution10 {
     public static void main(String[] args) {
         System.out.println(new Solution10().isMatch("aaa",
