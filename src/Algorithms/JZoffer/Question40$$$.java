@@ -2,6 +2,10 @@ package Algorithms.JZoffer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+/**
+ * 一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。
+ */
 //异或的解法更佳
 public class Question40$$$ {
     public static void main(String[] args) {
@@ -22,7 +26,7 @@ public class Question40$$$ {
         num1[0] = arrayList.get(0);
         num2[0] = arrayList.get(1);
     }
-
+    //两次异或解法
     public void FindNumsAppearOnce2(int[] array, int[] num1, int[] num2) {
         int temp =array[0];
         for(int i=1;i<array.length;i++){
