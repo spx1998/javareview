@@ -39,10 +39,10 @@ public class CollectionTest {
         TreeSet<String> treeSet = new TreeSet<>();
         treeSet.add("a");
         treeSet.add("b");
-        treeSet.add("c");
+        treeSet.add("e");
         treeSet.add("d");
         for(String s : treeSet){//遍历treeSet
-            System.out.print(s + " ");//a b c d -> 与插入顺序相符
+            System.out.print(s + " ");//a b d e -> sort的顺序
         }
         System.out.println();
         for(String s:hashMap.keySet()){//遍历hashMap的keyset
