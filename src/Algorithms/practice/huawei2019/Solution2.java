@@ -3,6 +3,20 @@ package Algorithms.practice.huawei2019;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 对一行给定的字符串进行反转输出，同时去除中间不满足条件的分隔符
+ * 输入字符串：I am an 20-years out--standing @ * -stu- dent
+ * 去除分割符并反转之后，输出字符串（子字符串以一个空格隔开）：dent stu standing out 20-years an am I
+ * 分割符描述如下：
+ * 1、除了字母、数字和 - 之外，其他的都是分割符，如输入字符串中的@ *等都属于分割符
+ * 2、20-years中的'-' 表示的是连接符，即当‘-’两边都有字母、数字时，‘-’就属于连接符，否则属于分割符
+ * 3、out--standing中的‘--’表示分割符，应该拆分为两个字字符串out 和 standing
+ * 解决思路：用栈去实现，遍历输入字符串的字符：
+ * 1、遇到字母和数字就入栈。
+ * 2、遇到‘-’的时候就判断是分割符还是连接符，要是是分割符，就弹出所有栈元素，构成一个子字符串，否则就入栈
+ * 3、遇到其他分割符，弹出所有栈元素，构成子字符串
+ * 找到所有子字符串，就可以做反序输出处理
+ */
 public class Solution2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

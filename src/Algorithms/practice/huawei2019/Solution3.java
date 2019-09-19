@@ -3,13 +3,21 @@ package Algorithms.practice.huawei2019;
 import java.util.*;
 
 /**
- * 3
- CZ7132,A1,ZHANGSAN
- CZ7132,A2,ZHAOSI
- CZ7156,A2,WANGWU
- 2
- * CZ7132,A1,CZ7156,A2
- * CZ7156,A2,CZ7156,A3
+ *给定多组原本的航班预订信息（航班号，座位号，乘客姓名），以及多组要改签的航班信息（原本航班号，原本座位号，新航班号，新座位号）
+ * 输出最后的航班预订信息，要是有重复的内容，以最新改签的为标准
+ * 输入的内容如下： 3 表示原本的航班信息数，2表示要改签的航班数
+  3
+  CZ7132,A1,ZHANGSAN
+  CZ7132,A2,ZHAOSI
+  CZ7156,A2,WANGWU
+  2
+  CZ7132,A1,CZ7156,A2
+  CZ7156,A2,CZ7156,A3
+ *
+ * 输出内容如下：
+ * CZ7132,A2,ZHAOSI
+ * CZ7156,A2,ZHANGSA
+ * CZ7156,A3,WANGW
  */
 public class Solution3 {
     public static void main(String[] args) {
