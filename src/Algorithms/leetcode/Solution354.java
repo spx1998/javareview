@@ -11,7 +11,10 @@ import java.util.Arrays;
  *
  * 解法：降维，将二维转化为一维的lis问题
  */
-public class Solution354 {
+public class Solution354{
+    public static void main(String[] args) {
+
+    }
     public int maxEnvelopes(int[][] envelopes) {
         int n = envelopes.length;
         // 按宽度升序排列，如果宽度一样，则按高度降序排列
