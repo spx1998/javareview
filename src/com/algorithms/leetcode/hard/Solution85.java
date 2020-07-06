@@ -1,5 +1,8 @@
 package com.algorithms.leetcode.hard;
 
+import com.algorithms.leetcode.medium.Solution503;
+import com.algorithms.leetcode.medium.Solution739;
+
 import java.util.Stack;
 
 /**
@@ -26,10 +29,10 @@ import java.util.Stack;
  * 由此转换为四个单调栈问题的最大值。
  * <p>
  * 相关问题：
- * <p>
  * leetcode42题  {@link Solution42}
  * leetcode84题  {@link Solution84}
- * leetcode739题 {@link com.algorithms.leetcode.medium.Solution739}
+ * leetcode503题 {@link Solution503}
+ * leetcode739题 {@link Solution739}
  */
 public class Solution85 {
     public static void main(String[] args) {

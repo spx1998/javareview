@@ -7,24 +7,23 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 给定一个二叉树，返回它的中序 遍历。用迭代的方法，不要用递归的方法
+ * 给定一个二叉树，返回它的前序遍历。要求使用迭代方法。
  * <p>
- * 解法：
- * 略
+ * 我的解法：经典的栈解法，略
+ * <p>
+ * 更佳解法：莫里斯遍历
  */
-public class Solution94 {
-    public List<Integer> inorderTraversal(TreeNode root) {
+public class Solution144 {
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        if (root == null) return list;
         Stack<TreeNode> stack = new Stack<>();
         while (root != null || !stack.empty()) {
             while (root != null) {
+                list.add(root.val);
                 stack.push(root);
                 root = root.left;
             }
-            root = stack.pop();
-            list.add(root.val);
-            root = root.right;
+            root = stack.pop().right;
         }
         return list;
     }

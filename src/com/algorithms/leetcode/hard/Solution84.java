@@ -1,5 +1,7 @@
 package com.algorithms.leetcode.hard;
 
+import com.algorithms.leetcode.medium.Solution503;
+
 import java.util.Stack;
 
 /**
@@ -44,6 +46,7 @@ import java.util.Stack;
  * 相关问题：
  * leetcode42题  {@link Solution42}
  * leetcode85题  {@link Solution85}
+ * leetcode503题 {@link Solution503}
  * leetcode739题 {@link com.algorithms.leetcode.medium.Solution739}
  */
 public class Solution84 {

@@ -1,5 +1,8 @@
 package com.algorithms.leetcode.hard;
 
+import com.algorithms.leetcode.medium.Solution503;
+import com.algorithms.leetcode.medium.Solution739;
+
 import java.util.Stack;
 
 /**
@@ -25,7 +28,8 @@ import java.util.Stack;
  * 相关问题：
  * leetcode84题  {@link Solution84}
  * leetcode85题  {@link Solution85}
- * leetcode739题 {@link com.algorithms.leetcode.medium.Solution739}
+ * leetcode503题 {@link Solution503}
+ * leetcode739题 {@link Solution739}
  */
 public class Solution42 {
     public int trap(int[] height) {
