@@ -5,6 +5,20 @@ package com.designpatterns;
  * 单例模式的实现
  */
 public class Singleton {
+
+//    /**
+//     * 避免该类在外部被实例化,同时避免反射造成的单例破坏。
+//     */
+//    private Singleton() {
+//        if (uniqueInstance !=null){
+//            throw new RuntimeException("实例已经存在，请通过 getInstance()方法获取");
+//        }
+//    }
+    //如果实现了Serializable接口，避免反序列化造成单例破坏。
+//    public Object readResolve() throws ObjectStreamException {
+//        return uniqueInstance;
+//    }
+
     //饿汉式(线程安全)  随类的创建而创建 无延迟实例化
 //    private static Singleton uniqueInstance = new Singleton();
 //    public static Singleton getInstance(){
@@ -21,7 +35,7 @@ public class Singleton {
 //    }
 
     //懒汉式(线程安全) 用synchronized锁保证线程安全 性能差
-//    private static Singleton uniqueInstance;
+//    private static volatile Singleton uniqueInstance;
 //    public static synchronized Singleton getInstance(){
 //        if (uniqueInstance==null){
 //            uniqueInstance = new Singleton();
@@ -30,7 +44,7 @@ public class Singleton {
 //    }
 
     //双重校验锁(线程安全) volatile取消指令重排序 性能比懒汉式好
-//    private volatile static Singleton uniqueInstance;
+//    private static volatile Singleton uniqueInstance;
 //    public static Singleton getInstance(){
 //        if(uniqueInstance==null){
 //            synchronized (Singleton.class){
@@ -52,20 +66,20 @@ public class Singleton {
 //        return SingletonHolder.uniqueInstance;
 //    }
 
+     //枚举实现 防止反射攻击
+//    public Singleton getInstance(){
+//        return SingletonEnum.SINGLETON_ENUM.getInstance();
+//    }
+//    public enum SingletonEnum{
+//        //枚举实例默认是static final的
+//        SINGLETON_ENUM;
+//        private final Singleton singleton;
+//        SingletonEnum() {
+//            singleton = new Singleton();
+//        }
+//        public Singleton getInstance(){
+//            return singleton;
+//        }
+//    }
 }
-    //枚举实现 可以防止反射攻击
-//public enum Singleton{
-//    INSTANCE;
-//
-//    private String objName;
-//
-//
-//    public String getObjName() {
-//        return objName;
-//    }
-//
-//
-//    public void setObjName(String objName) {
-//        this.objName = objName;
-//    }
-//}
+
