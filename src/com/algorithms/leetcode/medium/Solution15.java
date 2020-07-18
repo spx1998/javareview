@@ -12,6 +12,9 @@ import java.util.List;
  * 如果当前和大于0则第三个元素前移，小于0则第二个元素后移，等于0则取得一种解。比起暴力解法O（n^3）的时间复杂度，这种算法的时间复杂度为n*n。
  * <p>
  * 其他解法：暴力解法，时间复杂度较高。
+ * <p>
+ * 相关问题：
+ * leetcode第16题  {@link Solution16}
  */
 public class Solution15 {
     public static void main(String[] args) {
