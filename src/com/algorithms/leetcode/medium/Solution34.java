@@ -1,7 +1,6 @@
 package com.algorithms.leetcode.medium;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 /**
  * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
@@ -16,8 +15,8 @@ import java.util.stream.Stream;
  * 我的思路：
  * 类似二分查找，如果temp处的值不等于target，则完全与二分查找相同，若等于target，则两侧分别继续进行查找。
  * <p>
- * leetcode35题 {@link com.algorithms.leetcode.easy.Solution35}
  * leetcode33题 {@link com.algorithms.leetcode.medium.Solution33}
+ * leetcode35题 {@link com.algorithms.leetcode.easy.Solution35}
  */
 public class Solution34 {
     public static void main(String[] args) {

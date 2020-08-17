@@ -5,7 +5,7 @@ package com.algorithms.leetcode.easy;
  * 你可以假设数组中无重复元素。
  * 我的解法：
  * 根据题意遍历数组，若数组中的某个元素大于等于target，则返回该元素下标，若全部遍历完数组，则返回数组长度。
- * 优化：可以使用二分法
+ * 优化：可以使用二分法,查找第一个>=target的元素。
  * 相关问题：
  * leetcode33题 {@link com.algorithms.leetcode.medium.Solution33}
  * leetcode34题 {@link com.algorithms.leetcode.medium.Solution34}
