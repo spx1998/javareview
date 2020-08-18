@@ -20,6 +20,10 @@ import java.util.HashMap;
  * 若任意key出现次数大于1则返回false。数组下标代表第i个行/列/矩形。
  * <p>
  * 值得注意的是，子矩阵的判断，如何判定某元素应该属于哪一个矩阵。对于每个元素board[i][j],可以通过index = i / 3 + (j / 3) * 3 来确定矩阵的index。
+ *
+ *
+ * 相关问题：
+ * leetcode 37题 {@link com.algorithms.leetcode.hard.Solution37}
  */
 public class Solution36 {
     public static void main(String[] args) {
