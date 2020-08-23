@@ -18,7 +18,7 @@ import java.util.Stack;
  * 如果出现数组中数据大于前一个的时候，就出现了蓄水的可能。此时，从下向上，逐层计算蓄水量。将多边形的储水面积划分成每层的矩形面积。
  * <p>
  * 改进：stack2实际上并不需要设置为栈，设置为记录当前最低height和长度的两个变量即可。
- * stack中不存储height值，存储height的下标index.
+ * stack中不存储height值，存储height的下标index.->单调栈解法
  * <p>
  * 更佳解法：双指针
  * 通过观察，应该发现一个事实：横坐标每跨一格可储存的水为1*min(left_max,right_max)，
@@ -32,6 +32,12 @@ import java.util.Stack;
  * leetcode739题 {@link Solution739}
  */
 public class Solution42 {
+    public static void main(String[] args) {
+//        int[] ints = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        System.out.println(new Solution42().stackTrap(new int[]{4, 2, 3}));
+
+    }
+
     public int trap(int[] height) {
         Stack<Integer> stack1 = new Stack<>();
         Stack<Integer> stack2 = new Stack<>();
@@ -86,11 +92,6 @@ public class Solution42 {
     /**
      * 双指针法
      */
-    public static void main(String[] args) {
-        int[] ints = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-        System.out.println(new Solution42().doublePointer(ints));
-    }
-
     public int doublePointer(int[] height) {
         int leftMax = 0;
         int rightMax = 0;
@@ -110,4 +111,28 @@ public class Solution42 {
         }
         return rain;
     }
+
+    /**
+     * 单调栈
+     */
+    public int stackTrap(int[] height) {
+        Stack<Integer> stack = new Stack<>();
+        int res = 0;
+        for (int i = 0; i < height.length; i++) {
+            if (!stack.empty() && height[stack.peek()] <= height[i]) {
+                int temp = stack.peek();
+                while (!stack.empty() && height[stack.peek()] < height[i]) {
+                    res += Math.max(0, i - stack.peek() - 1) * (height[stack.peek()] - temp);
+                    temp = height[stack.peek()];
+                    stack.pop();
+                }
+                if (!stack.empty()) {
+                    res += Math.max(0, i - stack.peek() - 1) * (height[i] - temp);
+                }
+            }
+            stack.push(i);
+        }
+        return res;
+    }
+
 }
