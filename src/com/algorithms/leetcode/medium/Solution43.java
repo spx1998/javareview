@@ -20,9 +20,9 @@ import java.util.List;
  * 相关问题：
  * leetcode 415题 {@link com.algorithms.leetcode.easy.Solution415}
  */
-public class Solution42 {
+public class Solution43 {
     public static void main(String[] args) {
-        System.out.println(new Solution42().multiply("93553535314",
+        System.out.println(new Solution43().multiply("93553535314",
                 "25247452591474"));
     }
 
