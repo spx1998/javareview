@@ -1,5 +1,7 @@
 package com.experiment;
 
+import java.util.Collections;
+
 /**
  * -2147483647
  * -1073741824
@@ -19,6 +21,5 @@ public class BinaryTest {
         System.out.println(Integer.toBinaryString(i >> 1));
         System.out.println(Integer.toBinaryString(i >>> 1));
         System.out.println(Integer.toBinaryString(3));
-
     }
 }
