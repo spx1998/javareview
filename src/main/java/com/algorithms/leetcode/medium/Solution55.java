@@ -7,6 +7,9 @@ package com.algorithms.leetcode.medium;
  * 解法：
  * 维持一个当前能到达的下标最大元素max，初始化为0。遍历数组，如果max≥i,则说明当前元素可达，i+num[i]即从当前元素出发可达的下标最大的元素，
  * max设为该下标与当前max中的最大值；若max<i,说明当前元素已不可达，返回false。max≥nums.length-1说明已经可达最后一个元素，返回true。
+ * <p>
+ * 相关问题
+ * leetcode 45题 {@link com.algorithms.leetcode.hard.Solution45}
  */
 public class Solution55 {
     public static void main(String[] args) {
@@ -27,3 +30,4 @@ public class Solution55 {
         }
         return false;
     }
+}
