@@ -7,6 +7,8 @@
     <groupId>javaview</groupId>
     <artifactId>javareview</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
 
+    </dependencies>
     
 </project>
