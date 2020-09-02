@@ -26,6 +26,7 @@ import java.util.*;
  * *     \                     |
  * *      1                    |
  * * i-1被使用的情况          i-1未被使用的情况
+ * 一个关键在于，剪枝之前往往要先进行排序。
  * <p>
  * 相关问题：
  * leetcode 46题 {@link Solution46}
