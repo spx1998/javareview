@@ -1,7 +1,6 @@
 package com.algorithms.leetcode.hard;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,6 +9,11 @@ import java.util.List;
  * 每一种解法包含一个明确的n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
  * 皇后彼此不能相互攻击，即：任何两个皇后都不能处于同一条横行、纵行或斜线上。
  * 我的解法：回溯法
+ * 优化：我的解法中，对于每个元素都需要向上（行）去查看斜线上每个元素是否有Q，应该像columns一样，用数组标记，而不是每次都查找；
+ * 优化后的解法在Solution52中。
+ *
+ * 相关问题：
+ * leetcode 52题 {@link Solution52}
  */
 public class Solution51 {
     boolean[] columns;
@@ -33,6 +37,7 @@ public class Solution51 {
     }
 
     private void doSomething(int i, int n, char[][] chars, List<List<String>> result) {
+
         if (i == n) {
             List<String> list = new ArrayList<>();
             StringBuilder sb;
