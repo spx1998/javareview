@@ -15,6 +15,11 @@ import java.util.List;
  * 输入：intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
  * 输出：[[1,2],[3,10],[12,16]]
  * 解释：这是因为新的区间 [4,8] 与 [3,5],[6,7],[8,10]重叠。
+ * 我的解法：
+ * 插入新数组，然后做法与56题一致。
+ *
+ * 相关问题：
+ * leetcode 56题 {@link com.algorithms.leetcode.medium.Solution56}
  */
 public class Solution57 {
     public int[][] insert(int[][] intervals, int[] newInterval) {

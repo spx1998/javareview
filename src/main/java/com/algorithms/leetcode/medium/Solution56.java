@@ -14,10 +14,13 @@ import java.util.*;
  * 解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。
  * 提示：
  * intervals[i][0] <= intervals[i][1]
+ * 我的解法：
+ * 先根据区间下界排序，然后遍历数组，插入或合并即可。
+ *
+ * 相关问题：
+ * leetcode 57题 {@link com.algorithms.leetcode.hard.Solution57}
  */
 public class Solution56 {
-
-
     public int[][] merge(int[][] intervals) {
         List<int[]> list = new ArrayList<>(Arrays.asList(intervals));
         list.sort(Comparator.comparingInt(o -> o[0]));

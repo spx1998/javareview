@@ -8,7 +8,9 @@ package com.algorithms.leetcode.easy;
  * 解释:连续子数组[4,-1,2,1] 的和最大，为6。
  * 进阶:
  * 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
- * TODO： 解法
+ * 我的解法：
+ * 遍历数组中的元素，记录下此时的最大值和一个temp值，若temp+nums[i]>0,则temp = temp+nums[i]，否则temp = 0。
+ * max = Math.max(max,temp).遍历完成后的max即结果。
  */
 public class Solution53 {
     public static void main(String[] args) {
@@ -35,7 +37,7 @@ public class Solution53 {
     }
 
     /**
-     * 分治法
+     * TODO 分治法
      */
     public int maxSubArray2(int[] nums) {
         return 0;

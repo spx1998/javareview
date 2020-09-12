@@ -1,7 +1,6 @@
 package com.algorithms.leetcode.medium;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,11 +24,19 @@ import java.util.List;
  * [9,10,11,12]
  * ]
  * 输出: [1,2,3,4,8,12,11,10,9,5,6,7]
- * TODO: 解法
+ * 我的解法：
+ * 根据题意旋转即可，根据如下顺序遍历。需要注意一行或一列的情况,如 {{1 2 3 4}}，会出现 1 2 3 4 3 2 重复遍历的情况，
+ * 需要在代码中判断是否是单行或单列，如果是，只输出第二行/列的第一个元素。
+ * A A A A B
+ * D E E E B
+ * D C C C C
+ *
+ * 相似问题:
+ * leetcode 59题 {@link com.algorithms.leetcode.medium.Solution59}
  */
 public class Solution54 {
     public static void main(String[] args) {
-        new Solution54().spiralOrder(new int[][]{{1, 2}, {3, 4}}).forEach(System.out::println);
+        new Solution54().spiralOrder(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}).forEach(System.out::println);
         System.out.println("--------------");
         new Solution54().spiralOrder(new int[][]{{1, 2, 3, 4},
                 {5, 6, 7, 8},
