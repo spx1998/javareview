@@ -21,9 +21,10 @@ package com.algorithms.leetcode.medium;
  * 我的解法：
  * 1 回溯法 超时
  * 2 动态规划 设置一个二维dp数组，dp[n][0],dp[0][n]都是1，其余的值dp[m][n] = dp[m-1][n]+dp[m][n-1].
- *
+ * <p>
  * 相关问题：
- *  * leetcode 63题 {@link Solution63}
+ * leetcode 63题 {@link Solution63}
+ * leetcode 64题 {@link Solution64}
  */
 public class Solution62 {
     public static void main(String[] args) {
