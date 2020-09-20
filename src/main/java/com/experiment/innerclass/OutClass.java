@@ -12,4 +12,13 @@ public class OutClass {
 
     }
 
+    abstract class AbstractInnerClass{
+
+    }
+
+    class ConcreteAbstractInnerClass extends AbstractInnerClass{
+
+    }
+
+
 }
