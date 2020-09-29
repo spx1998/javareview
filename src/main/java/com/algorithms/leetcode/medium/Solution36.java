@@ -24,6 +24,7 @@ import java.util.HashMap;
  *
  * 相关问题：
  * leetcode 37题 {@link com.algorithms.leetcode.hard.Solution37}
+ * leetcode 74题 {@link Solution74}
  */
 public class Solution36 {
     public static void main(String[] args) {
