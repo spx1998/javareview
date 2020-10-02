@@ -1,5 +1,6 @@
 package com.algorithms.leetcode.medium;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +19,27 @@ import java.util.List;
  * [1,2],
  * []
  * ]
+ * 我的解法：
+ * 回溯法
  */
 public class Solution78 {
     public List<List<Integer>> subsets(int[] nums) {
-        return null;
+        ArrayList<List<Integer>> lists = new ArrayList<>();
+        dfs(0, nums, new ArrayList<>(), lists, true);
+        return lists;
+    }
+
+    private void dfs(int n, int[] nums, ArrayList<Integer> list, ArrayList<List<Integer>> lists, boolean bl) {
+        if (bl) {
+            lists.add(new ArrayList<>(list));
+        }
+        if (n == nums.length) {
+            return;
+        }
+
+        list.add(nums[n]);
+        dfs(n + 1, nums, list, lists, true);
+        list.remove(list.size() - 1);
+        dfs(n + 1, nums, list, lists, false);
     }
 }
