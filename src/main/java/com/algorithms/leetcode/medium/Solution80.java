@@ -22,15 +22,23 @@ package com.algorithms.leetcode.medium;
  * for (int i = 0; i < len; i++) {
  * print(nums[i]);
  * }
- *
+ * <p>
  * 我的解法：
  * 每当出现三个及以上连续的字符时，将多余的相同字符删除，后面的子串前移覆盖掉它们。
+ * <p>
+ * 双指针解法：
+ * 双指针，一个指针i用来遍历数组，一个指针j指向新数组的末尾的下一元素。遍历数组，记录与当前元素相同的元素数量count，
+ * 如果小于等于2则将j指针指向处覆盖为当前元素，并将j指针后移一位。如果count>2,则跳过该元素，j指针不变。如果当前元素与上一元素不同，则将count设为1，
+ * 重新计数。
  */
 public class Solution80 {
     public static void main(String[] args) {
         System.out.println(new Solution80().removeDuplicates(new int[]{1, 1, 1}));
     }
 
+    /**
+     * 我的解法
+     */
     public int removeDuplicates(int[] nums) {
         int length = nums.length;
         for (int i = 0; i < length; i++) {
@@ -49,5 +57,23 @@ public class Solution80 {
             }
         }
         return length;
+    }
+
+    /**
+     * 双指针
+     */
+    public int removeDuplicates2(int[] nums) {
+        int j = 1, count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                count++;
+            } else {
+                count = 1;
+            }
+            if (count <= 2) {
+                nums[j++] = nums[i];
+            }
+        }
+        return j;
     }
 }
