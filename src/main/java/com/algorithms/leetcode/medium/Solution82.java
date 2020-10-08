@@ -1,7 +1,6 @@
 package com.algorithms.leetcode.medium;
 
 import com.algorithms.datastructure.ListNode;
-import com.sun.org.apache.bcel.internal.generic.LNEG;
 
 /**
  * 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。
@@ -13,6 +12,9 @@ import com.sun.org.apache.bcel.internal.generic.LNEG;
  * 输出: 2->3
  * 我的解法：
  * 用一个pre指针指向head。遍历pre，如果当前节点的next节点是重复节点则向后去除重复节点；若不是，则将cur指向当前节点的next节点。遍历一次即可。
+ * <p>
+ * 相关问题：
+ * leetcode 83题 {@link com.algorithms.leetcode.easy.Solution83}
  */
 public class Solution82 {
     public static void main(String[] args) {
