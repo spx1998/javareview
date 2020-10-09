@@ -38,7 +38,7 @@ import java.util.Stack;
  * 将i压入栈中。继续向后遍历，直到数组结尾。
  * 此时，如果栈中仍有剩余元素，肯定是递增的，可以根据与上述(①)一致的方法从后向前计算最大面积。
  * 最终比较得到的最大面积即结果。
- * 值得注意的是：在stack栈底先压入了一个-1，这是为了计算以所以柱子中最矮的柱子高度为高时的最大矩形面积。
+ * 值得注意的是：在stack栈底先压入了一个-1，这是为了计算以所有柱子中最矮的柱子高度为高时的最大矩形面积。
  * 例如: [3,1,5,2,4] 将数组遍历完得到的栈中元素为 1,2,4的下标，分别为1，3，4 。
  * 高度4对应宽度为（5-3-1），高度2对应的宽度为（5-1-1），而高度1对应的下标应该为（5-（-1）+1）。
  * 因为，最低高度对应的宽一定是整个图形的总宽，即数组长度。
@@ -60,12 +60,16 @@ public class Solution84 {
             for (int j = i - 1; j >= 0; j--) {
                 if (heights[j] >= heights[i]) {
                     temp++;
-                } else break;
+                } else {
+                    break;
+                }
             }
             for (int k = i + 1; k < heights.length; k++) {
                 if (heights[k] >= heights[i]) {
                     temp++;
-                } else break;
+                } else {
+                    break;
+                }
             }
             max = Math.max(max, temp * heights[i]);
         }
@@ -100,12 +104,15 @@ public class Solution84 {
         stack.push(-1);
         int maxarea = 0;
         for (int i = 0; i < heights.length; ++i) {
-            while (stack.peek() != -1 && heights[stack.peek()] >= heights[i])
+            while (stack.peek() != -1 && heights[stack.peek()] >= heights[i]) {
                 maxarea = Math.max(maxarea, heights[stack.pop()] * (i - stack.peek() - 1));
+            }
             stack.push(i);
         }
-        while (stack.peek() != -1)
+        while (stack.peek() != -1) {
             maxarea = Math.max(maxarea, heights[stack.pop()] * (heights.length - stack.peek() - 1));
+        }
         return maxarea;
+
     }
 }

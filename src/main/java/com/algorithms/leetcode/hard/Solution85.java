@@ -36,11 +36,11 @@ import java.util.Stack;
  */
 public class Solution85 {
     public static void main(String[] args) {
-        char[][] chars =
-                {{'1', '0', '1', '0', '0'},
-                        {'1', '0', '1', '1', '1'},
-                        {'1', '1', '1', '1', '1'},
-                        {'1', '0', '0', '1', '0'}};
+        char[][] chars = {
+                {'1', '0', '1', '0', '0'},
+                {'1', '0', '1', '1', '1'},
+                {'1', '1', '1', '1', '1'},
+                {'1', '0', '0', '1', '0'}};
         System.out.println(new Solution85().monotonousStack(chars));
     }
 
@@ -48,7 +48,9 @@ public class Solution85 {
      * 暴力解法
      */
     public int maximalRectangle(char[][] matrix) {
-        if (matrix.length == 0 || matrix[0] == null || (matrix.length == 1 && matrix[0].length == 0)) return 0;
+        if (matrix.length == 0 || matrix[0] == null || (matrix.length == 1 && matrix[0].length == 0)) {
+            return 0;
+        }
         int row = matrix.length;//行数
         int col = matrix[0].length;//列数
         int maxArea = 0;
@@ -76,24 +78,30 @@ public class Solution85 {
      * 单调栈解法
      */
     public int monotonousStack(char[][] matrix) {
-        if (matrix.length == 0) return 0;
+        if (matrix.length == 0) {
+            return 0;
+        }
         int[] heights = new int[matrix[0].length + 1];
         int maxArea = 0;
         for (char[] chars : matrix) {
             Stack<Integer> stack = new Stack<>();
             stack.push(-1);
             for (int col = 0; col <= matrix[0].length; col++) {
+//                记录每一列在当前柱状图的高度。如果当前行该列为1，则上一个柱状图中该列高度+1；若当前行该列为0，则置为0。
                 if (col < matrix[0].length) {
-                    if (chars[col] == '1')
+                    if (chars[col] == '1') {
                         heights[col] += 1;
-                    else heights[col] = 0;
-                }
-                if (stack.peek() != -1 && heights[stack.peek()] > heights[col]) {
-                    while (stack.peek() != -1 && heights[stack.peek()] > heights[col]) {
-                        maxArea = Math.max(maxArea, heights[stack.pop()] * (col - stack.peek() - 1));
+                    } else {
+                        heights[col] = 0;
                     }
                 }
+                while (stack.peek() != -1 && heights[stack.peek()] > heights[col]) {
+                    maxArea = Math.max(maxArea, heights[stack.pop()] * (col - stack.peek() - 1));
+                }
                 stack.push(col);
+            }
+            while (stack.peek() != -1) {
+                maxArea = Math.max(maxArea, heights[stack.pop()] * (heights.length - stack.peek() - 1));
             }
         }
         return maxArea;
