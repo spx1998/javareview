@@ -1,5 +1,7 @@
 package com.algorithms.leetcode.easy;
 
+import com.algorithms.classical.Kmp;
+
 /**
  * 实现strStr()函数。
  * 给定一个haystack 字符串和一个 needle 字符串，
@@ -16,9 +18,12 @@ package com.algorithms.leetcode.easy;
  * <p>
  * 我的解法：
  * 暴力解法
+ * <p>
+ * 应该参考经典的Kmp算法的实现来解决这个问题。{@link com.algorithms.classical.Kmp}
  */
 public class Solution28 {
-    public int strStr(String haystack, String needle) {
+
+    public int simplestrStr(String haystack, String needle) {
         if (needle == null || "".equals(needle)) {
             return 0;
         }
@@ -28,5 +33,46 @@ public class Solution28 {
             }
         }
         return -1;
+    }
+
+    /**
+     * Kmp算法
+     */
+
+    public int kmpMatch(String text, String pattern) {
+        int[] next = getNext(pattern);
+        int j = 0;
+        for (int i = 0; i < text.length(); i++) {
+            while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (text.charAt(i) == pattern.charAt(j)) {
+                j++;
+                if (j == pattern.length()) {
+                    return i - pattern.length() + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    /**
+     * @param pattern 模式串
+     * @return next数组
+     */
+    private int[] getNext(String pattern) {
+        int[] next = new int[pattern.length()];
+        int j = 0;
+        for (int i = 1; i < next.length; i++) {
+            while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (pattern.charAt(i) == pattern.charAt(j)) {
+                j++;
+            }
+            next[i] = j;
+        }
+        return next;
     }
 }
