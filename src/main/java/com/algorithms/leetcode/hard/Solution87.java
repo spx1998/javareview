@@ -40,6 +40,16 @@ import java.util.HashMap;
  * 示例2:
  * 输入: s1 = "abcde", s2 = "caebd"
  * 输出: false
+ * <p>
+ * 解法：
+ * 对于两个字符串判断其是否是扰乱字符串，要分别判断他们的两个子串是否相等或者是扰乱子串，两个子串可以是在任意位置划分得到的。
+ * 可以将问题分解为子问题的解的和，因此有递归和DP两种解法。
+ * 1）递归
+ * 将两个字符串划分为S1 S2 和T1 T2两个，然后分别比较S1与T1，S2和T2或S1和T2，S2和T1是否相等或为扰乱字符串。
+ * 2）用一个三维的DP数组dp[i][j][k]
+ * i ,j,k分别是a串的起始位置，b串的起始位置和匹配长度。如dp[0][0][2]=true表示b的前两个字符组成的子串是b前两个字符组成的子串的扰乱字符串。
+ * dp[i][j][k] =(dp[i][j][w]&&dp[i+w][j+w][k-w])||(dp[i][j+k-w][w]&&dp[i+w][j][k-w]),其中1≤w≤k-1.
+ * 最终dp[0][0][n]即结果。
  */
 public class Solution87 {
     public static void main(String[] args) {
@@ -48,6 +58,9 @@ public class Solution87 {
 
     }
 
+    /**
+     * 递归
+     */
     public boolean isScramble(String s1, String s2) {
         // 长度不等，必定不能变换
         if (s1.length() != s2.length()) {
@@ -86,30 +99,39 @@ public class Solution87 {
         return false;
     }
 
-/*
-    public boolean isScramble(String s1, String s2) {
-        if (s1 == null || s2 == null || s1.length() != s2.length()) {
+    /**
+     * dp解法
+     */
+    public boolean dpSolution(String s1, String s2) {
+        char[] chars1 = s1.toCharArray();
+        char[] chars2 = s2.toCharArray();
+        int length = s1.length();
+        if (s1.length() != s2.length()) {
             return false;
         }
-        if (s1.equals(s2)) {
-            return true;
-        }
-        int length = s1.length();
-        int diff = -1;
+        boolean[][][] dp = new boolean[length][length][length + 1];
         for (int i = 0; i < length; i++) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                diff = i;
-                break;
+            for (int j = 0; j < length; j++) {
+                dp[i][j][1] = chars1[i] == chars2[j];
             }
         }
-        for (int i = 0; i < length; i++) {
-            if (s1.charAt(i) == s2.charAt(diff)) {
-                if (isScramble(s1.substring(0, i), s2.substring(i, i + i)) && isScramble(s1.substring(i, i + i), s2.substring(0, i)) && isScramble(s1.substring(i + i, length), s2.substring(i + i, length))) {
-                    return true;
+//        len是划分的区间的长度
+        for (int len = 2; len <= length; len++) {
+            for (int i = 0; i <= length - len; i++) {
+                for (int j = 0; j <= length - len; j++) {
+                    for (int k = 1; k < len; k++) {
+                        if (dp[i][j][k] && dp[i + k][j + k][len - k]) {
+                            dp[i][j][len] = true;
+                            break;
+                        }
+                        if (dp[i][j + len - k][k] && dp[i + k][j][len - k]) {
+                            dp[i][j][len] = true;
+                            break;
+                        }
+                    }
                 }
             }
         }
-        return false;
+        return dp[0][0][length];
     }
-*/
 }
