@@ -45,7 +45,9 @@ public class Solution145 {
     public List<Integer> postOrderIteration2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
-        if (root == null) return list;
+        if (root == null) {
+            return list;
+        }
         stack.push(root);
         TreeNode peek;
         TreeNode cur = root;

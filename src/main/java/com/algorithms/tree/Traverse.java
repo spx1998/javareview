@@ -36,6 +36,8 @@ public class Traverse {
         test.postTraverse1(root);
         System.out.println("\n非递归后序遍历1：");
         test.postTraverse2(root);
+        System.out.println("\n非递归后序遍历2：");
+        test.postTraverse3(root);
         System.out.println("\n层序遍历：");
         test.traverse(root);
     }
@@ -110,22 +112,53 @@ public class Traverse {
             System.out.print(integerStack.pop()+" ");
         }
     }
+
+    /**
+     * 第二种迭代后续遍历
+     * 用一个cur记录当期节点的左右子节点是否已遍历。
+     */
+    public void postTraverse3(TreeNode root){
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null) {
+            return ;
+        }
+        stack.push(root);
+        TreeNode peek;
+        TreeNode cur = root;
+        while (!stack.empty()) {
+            peek = stack.peek();
+            if (peek.left != null && peek.left != cur && peek.right != cur) {
+                stack.push(peek.left);
+            } else if (peek.right != null && peek.right != cur) {
+                stack.push(peek.right);
+            } else {
+                cur = stack.pop();
+                System.out.println(cur.val);
+            }
+        }
+    }
+
     //层序遍历
     public void traverse(TreeNode root){
         List<TreeNode> list =new ArrayList<>();
         int i =0;
-        if(root!=null)
+        if(root!=null) {
             list.add(root);
+        }
         while (root!=null){
             System.out.print(root.val + " ");
-            if(root.left !=null)
+            if(root.left !=null) {
                 list.add(root.left);
-            if(root.right !=null)
+            }
+            if(root.right !=null) {
                 list.add(root.right);
+            }
             i++;
-            if(i<list.size())
+            if(i<list.size()) {
                 root = list.get(i);
-            else break;
+            } else {
+                break;
+            }
         }
     }
 }
