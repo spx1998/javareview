@@ -23,6 +23,14 @@ import java.util.List;
  * 回溯法
  */
 public class Solution78 {
+    public static void main(String[] args) {
+        List<List<Integer>> lists = new Solution78().subsets(new int[]{1, 2, 3});
+        lists.forEach(o -> {
+            o.forEach(System.out::print);
+            System.out.println();
+        });
+    }
+
     public List<List<Integer>> subsets(int[] nums) {
         ArrayList<List<Integer>> lists = new ArrayList<>();
         dfs(0, nums, new ArrayList<>(), lists, true);
@@ -36,7 +44,6 @@ public class Solution78 {
         if (n == nums.length) {
             return;
         }
-
         list.add(nums[n]);
         dfs(n + 1, nums, list, lists, true);
         list.remove(list.size() - 1);
