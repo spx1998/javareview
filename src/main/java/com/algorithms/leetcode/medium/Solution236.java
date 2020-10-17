@@ -21,6 +21,11 @@ import java.util.Stack;
  * 说明:
  * 所有节点的值都是唯一的。
  * p、q 为不同节点且均存在于给定的二叉树中。
+ * <p>
+ * 解法：
+ * 递归后序遍历树，如果当前节点为p或q，则记录到当前节点的路径，即各个父节点。最后比较得到p，q节点的最后一个父节点。
+ * 优化写法：
+ * 如解法2
  */
 public class Solution236 {
     public static void main(String[] args) {
@@ -29,7 +34,6 @@ public class Solution236 {
         root.right = new TreeNode(1);
         new Solution236().lowestCommonAncestor(root, root.left, root.right);
     }
-
 
 
     private final List<TreeNode> pList = new ArrayList<>();
@@ -64,6 +68,27 @@ public class Solution236 {
         dfs(root.left, p, q);
         dfs(root.right, p, q);
         stack.pop();
+    }
+
+    /**
+     * 解法2：优化写法
+     */
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null && right == null) {
+            return null;
+        }
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
     }
 
 
