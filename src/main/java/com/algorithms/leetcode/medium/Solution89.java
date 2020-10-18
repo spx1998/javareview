@@ -35,24 +35,48 @@ import java.util.stream.Collectors;
  * 例如 n = 3 时：
  * 000 001 011 010 => n-1的序列
  * 110 111 101 100 => n-1的序列中的每个值+n^(3-1),并反转
+ * 优化写法：
+ * 可以提高性能。
  */
 public class Solution89 {
     public static void main(String[] args) {
         new Solution89().grayCode(3).forEach(System.out::println);
     }
 
+    private Integer temp = 1;
+
     public List<Integer> grayCode(int n) {
         List<Integer> result = new ArrayList<>();
         result.add(0);
         for (int i = 1; i <= n; i++) {
-            result.addAll(doSomething(result, i));
+            result.addAll(doSomething(result));
         }
         return result;
     }
 
-    private List<Integer> doSomething(List<Integer> result, int i) {
-        List<Integer> list = result.stream().map(o -> o + (int) (Math.pow(2, i - 1))).collect(Collectors.toList());
+    /**
+     * 获取反转后的新序列
+     */
+    private List<Integer> doSomething(List<Integer> result) {
+        List<Integer> list = result.stream().map(o -> o + temp).collect(Collectors.toList());
+        temp = temp << 1;
         Collections.reverse(list);
         return list;
     }
+
+    /**
+     * 优化写法
+     */
+    public List<Integer> grayCode2(int n) {
+        List<Integer> res = new ArrayList<Integer>(Collections.singleton(0));
+        int head = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = res.size() - 1; j >= 0; j--) {
+                res.add(head + res.get(j));
+            }
+            head <<= 1;
+        }
+        return res;
+    }
+
 }

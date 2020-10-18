@@ -21,6 +21,8 @@ import java.util.List;
  * ]
  * 我的解法：
  * 回溯法
+ * <p>
+ * leetcode 90 {@link Solution90}
  */
 public class Solution78 {
     public static void main(String[] args) {

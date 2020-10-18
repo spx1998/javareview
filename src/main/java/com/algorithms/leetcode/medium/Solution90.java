@@ -63,6 +63,20 @@ public class Solution90 {
                 list.remove(list.size() - 1);
             }
         }
+    }
 
+    /**
+     * 更好的写法
+     */
+    private void dfs2(int[] nums, int index, ArrayList<Integer> list, List<List<Integer>> lists) {
+        lists.add(new ArrayList<>(list));
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            list.add(nums[i]);
+            dfs(nums, index + 1, list, lists);
+            list.remove(list.size() - 1);
+        }
     }
 }
