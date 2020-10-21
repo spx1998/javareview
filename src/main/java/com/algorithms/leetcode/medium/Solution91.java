@@ -36,6 +36,9 @@ package com.algorithms.leetcode.medium;
  * 对于dp[i]，如果s.charAt(i-1)=='0',且s.charAt(i-2)==0|>'2',则无法匹配，直接返回0，否则，dp[i]=dp[i-2]；
  * 如果s.charAt(i-1)!='0',且s.charAt(i-2)==1或者s.charAt(i-1)!='0'且s.charAt(i-1)<'7'，且s.charAt(i-2)==2，dp[i]=dp[i-1]+dp[i-2].
  * dp[length-1]即所得。
+ *
+ * 相似问题：
+ * leetcode 93 {@link Solution93}
  */
 public class Solution91 {
     public static void main(String[] args) {

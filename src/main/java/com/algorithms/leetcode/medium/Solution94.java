@@ -15,7 +15,9 @@ import java.util.Stack;
 public class Solution94 {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        if (root == null) return list;
+        if (root == null) {
+            return list;
+        }
         Stack<TreeNode> stack = new Stack<>();
         while (root != null || !stack.empty()) {
             while (root != null) {

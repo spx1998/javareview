@@ -36,7 +36,8 @@ public class Kmp {
 
     public boolean kmpMatch(String text, String pattern) {
         int[] next = getNext(pattern);
-        int j = 0;//j是当前正在进行匹配的pattern串的下标。
+        //j是当前正在进行匹配的pattern串的下标。
+        int j = 0;
         for (int i = 0; i < text.length(); i++) {
             while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
                 j = next[j - 1];
