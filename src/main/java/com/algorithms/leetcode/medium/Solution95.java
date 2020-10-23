@@ -25,6 +25,12 @@ import java.util.*;
  * 2     1         2                 3
  * 提示：
  * 0 <= n <= 8
+ * 我的解法：
+ * 类似96题，回溯法。
+ * 优化写法：
+ * generateTrees的参数改为子树的第一个数字和最后一个数字。
+ * 相似问题：
+ * leetcode 96题 {@link Solution96}
  */
 public class Solution95 {
 
@@ -116,16 +122,36 @@ public class Solution95 {
         return root;
     }
 
+    /**
+     * 优化写法
+     */
+    public List<TreeNode> generateTrees2(int n) {
+        if (n == 0) {
+            return new LinkedList<TreeNode>();
+        }
+        return generateTrees2(1, n);
+    }
+
+    private List<TreeNode> generateTrees2(int start, int end) {
+        List<TreeNode> allTrees = new LinkedList<TreeNode>();
+        if (start > end) {
+            allTrees.add(null);
+            return allTrees;
+        }
+        for (int i = start; i <= end; i++) {
+            TreeNode treeNode;
+            List<TreeNode> left = generateTrees2(start, i - 1);
+            List<TreeNode> right = generateTrees2(i + 1, end);
+            for (TreeNode l : left) {
+                for (TreeNode r : right) {
+                    treeNode = new TreeNode(i);
+                    treeNode.left = l;
+                    treeNode.right = r;
+                    allTrees.add(treeNode);
+                }
+            }
+        }
+        return allTrees;
+    }
 }
-/*
-if (n == 0) {
-        return treeNodeHashMap.get(0);
-        }
-        if (n - i == 1) {
-        return treeNodeHashMap.get(1);
-        }
 
-
-        }
-
-        return ;*/
