@@ -30,7 +30,34 @@ public class Solution103 {
     }
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-
-
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        deque.offer(root);
+        List<Integer> integers = new ArrayList<>();
+        boolean positive = true;
+        int size = 1;
+        while (!deque.isEmpty()) {
+            root = deque.removeFirst();
+            integers.add(root.val);
+            if (root.left != null) {
+                deque.addLast(root.left);
+            }
+            if (root.right != null) {
+                deque.addLast(root.right);
+            }
+            if (integers.size() == size) {
+                if (!positive) {
+                    Collections.reverse(integers);
+                }
+                result.add(integers);
+                integers = new ArrayList<>();
+                size = deque.size();
+                positive = !positive;
+            }
+        }
+        return result;
     }
 }
