@@ -38,9 +38,23 @@ import java.util.Stack;
  * 进阶:
  * 使用 O(n) 空间复杂度的解法很容易实现。
  * 你能想出一个只使用常数空间的解决方案吗？
+ * <p>
+ * 我的解法：
+ * 1）中序遍历二叉查找树的结果，是一个排序的数组，所以遍历一次，找到排序数组中未排序的两个值交换。
+ * 2）在中序遍历的过程中同时标记两个错误的节点。两个交换的节点导致一次后面的节点小于前面的节点，如图。
+ * *      5          4
+ * *    /  \        / \
+ * *  3    7 ==>  3    7  一次
+ * *   \           \
+ * *    4           5
+ * *      5          5
+ * *    /  \        / \
+ * *  3    7 ==>  3    4  两次
+ * *   \           \
+ * *    4           7
  *
- * 解法：
- * 中序遍历
+ * 空间复杂度O(1)的解法
+ * morris解法
  */
 public class Solution99 {
     public static void main(String[] args) {
@@ -51,33 +65,29 @@ public class Solution99 {
     }
 
     public void recoverTree(TreeNode root) {
-        Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
-        TreeNode x = null, y = null, pred = null;
-
+        TreeNode wrongNode1 = null, wrongNode2 = null;
+        TreeNode temp = null;
+        Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;
             }
             root = stack.pop();
-            if (pred != null && root.val < pred.val) {
-                y = root;
-                if (x == null) {
-                    x = pred;
+
+            if (temp != null && root.val < temp.val) {
+                wrongNode1 = root;
+                if (wrongNode2 == null) {
+                    wrongNode2 = temp;
                 } else {
                     break;
                 }
             }
-            pred = root;
+            temp = root;
             root = root.right;
         }
-
-        swap(x, y);
-    }
-
-    public void swap(TreeNode x, TreeNode y) {
-        int tmp = x.val;
-        x.val = y.val;
-        y.val = tmp;
+        int val = wrongNode1.val;
+        wrongNode1.val = wrongNode2.val;
+        wrongNode2.val = val;
     }
 }
