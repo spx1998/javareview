@@ -19,6 +19,8 @@ import java.util.*;
  * [20,9],
  * [15,7]
  * ]
+ * 我的解法：
+ * 层序遍历，第双数行的遍历列表反转。
  */
 public class Solution103 {
     public static void main(String[] args) {
