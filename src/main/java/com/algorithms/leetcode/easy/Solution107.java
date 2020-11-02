@@ -19,6 +19,8 @@ import java.util.*;
  * [9,20],
  * [3]
  * ]
+ * 解法：
+ * 中序遍历 reverse结果
  */
 public class Solution107 {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
