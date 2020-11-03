@@ -15,9 +15,33 @@ import com.algorithms.datastructure.TreeNode;
  * *   9  20
  * *    /  \
  * *  15   7
+ *
+ * 解法：
+ * 与105题类似
+ *
+ * 相关问题：
+ * leetcode 第105题 {@link Solution105}
  */
 public class Solution106 {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return null;
+        int length = inorder.length;
+        return buildTree(postorder, inorder, length - 1, 0, length - 1);
+    }
+
+    private TreeNode buildTree(int[] postorder, int[] inorder, int pAddr, int iStart, int iEnd) {
+        if (iEnd < iStart) {
+            return null;
+        }
+        int iAddr = 0;
+        for (int i = iStart; i <= iEnd; i++) {
+            if (inorder[i] == postorder[pAddr]) {
+                iAddr = i;
+                break;
+            }
+        }
+        TreeNode root = new TreeNode(postorder[pAddr]);
+        root.right = buildTree(postorder, inorder, pAddr - 1, iAddr + 1, iEnd);
+        root.left = buildTree(postorder, inorder, pAddr - iEnd + iAddr - 1, iStart, iAddr - 1);
+        return root;
     }
 }

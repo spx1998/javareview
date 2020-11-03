@@ -30,6 +30,8 @@ import java.util.Stack;
  * 需要观察得知，
  * 1）在前序遍历中相邻的两个节点a b，要么b是a的左子树的根节点，要么a没有左子树，b是a或a的某个父节点的右子树。
  * 2）对于一棵树，如果没有左子树，根节点的前序遍历和中序遍历位置相同；换言之，如果位置不同，则一定有左子树。
+ * 相关问题：
+ * leetcode 第106题 {@link Solution106}
  */
 public class Solution105 {
     public static void main(String[] args) {
