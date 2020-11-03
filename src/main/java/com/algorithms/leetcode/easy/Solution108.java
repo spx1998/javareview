@@ -14,7 +14,8 @@ import com.algorithms.datastructure.TreeNode;
  * *     -3   9
  * *     /   /
  * *   -10  5
- * TODO 解法
+ * 解法：
+ * 类似二分查找，递归每次取数组区间内中间的节点作为根节点，左右两个区间分别进行相同的操作构造左右子树。
  */
 public class Solution108 {
     public static void main(String[] args) {
