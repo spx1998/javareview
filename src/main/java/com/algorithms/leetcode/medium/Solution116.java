@@ -19,6 +19,13 @@ import com.algorithms.datastructure.Node;
  * 提示：
  * 你只能使用常量级额外空间。
  * 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
+ * <p>
+ * 解法1：
+ * 层序遍历，空间复杂度O(logn)
+ * 解法2：
+ * 递归，空间复杂度O(1)
+ * 1）对于每个节点，若有子树，则先将左右子树相连，若子树还有子树，则将左侧最右节点的next指向右侧最左节点，直到到达叶子节点。
+ * 2）按层链接，当第n层链接后，第n+1层可以根据第n层的链接链接。
  */
 public class Solution116 {
     public static void main(String[] args) {
@@ -33,7 +40,6 @@ public class Solution116 {
     }
 
     public Node connect(Node root) {
-
         doConnect(root);
         return root;
     }
@@ -57,5 +63,27 @@ public class Solution116 {
 
             }
         }
+    }
+
+    /**
+     * 递归2
+     */
+    public Node connect2(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node temp = root;
+        while (temp.left != null) {
+            Node head = temp;
+            while (head != null) {
+                head.left.next = head.right;
+                if (head.next != null) {
+                    head.right.next = head.next.left;
+                }
+                head = head.next;
+            }
+            temp = temp.left;
+        }
+        return root;
     }
 }
