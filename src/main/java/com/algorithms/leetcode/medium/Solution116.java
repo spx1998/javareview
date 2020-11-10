@@ -26,6 +26,9 @@ import com.algorithms.datastructure.Node;
  * 递归，空间复杂度O(1)
  * 1）对于每个节点，若有子树，则先将左右子树相连，若子树还有子树，则将左侧最右节点的next指向右侧最左节点，直到到达叶子节点。
  * 2）按层链接，当第n层链接后，第n+1层可以根据第n层的链接链接。
+ * <p>
+ * 相似问题：
+ * leetcode 117题 {@link Solution117}
  */
 public class Solution116 {
     public static void main(String[] args) {
