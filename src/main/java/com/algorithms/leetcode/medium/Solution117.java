@@ -26,7 +26,7 @@ import com.algorithms.datastructure.Node;
  * 解法1：
  * 迭代中序遍历 空间复杂度O(n)
  * 解法2：
- * 递归 如116题的第二种递归解法
+ * 迭代 如116题的第二种迭代解法
  *
  * 相似问题：
  * leetcode 116题 {@link Solution116}
