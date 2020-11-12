@@ -12,9 +12,12 @@ import java.util.List;
  * *   1 2 1
  * *  1 3 3 1
  * * 1 4 6 4 1
- *
+ * <p>
  * 解法：
  * 其实是动态规划的思想.
+ * <p>
+ * 相关问题：
+ * leetcode 119题 {@link Solution119}
  */
 public class Solution118 {
     public List<List<Integer>> generate(int numRows) {
