@@ -18,6 +18,7 @@ import java.util.List;
  * <p>
  * 相关问题：
  * leetcode 119题 {@link Solution119}
+ * leetcode 120题 {@link com.algorithms.leetcode.medium.Solution120}
  */
 public class Solution118 {
     public List<List<Integer>> generate(int numRows) {

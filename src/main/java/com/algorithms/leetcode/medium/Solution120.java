@@ -23,6 +23,10 @@ import java.util.List;
  * <p>
  * 更佳解法：
  * 从底到顶动态规划，最后结果不需要再取最小值。
+ * <p>
+ * 相似问题：
+ * leetcode 118题{@link com.algorithms.leetcode.easy.Solution118}
+ * leetcode 119题{@link com.algorithms.leetcode.easy.Solution119}
  */
 public class Solution120 {
     public int minimumTotal(List<List<Integer>> triangle) {

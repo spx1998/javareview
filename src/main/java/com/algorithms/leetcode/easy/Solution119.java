@@ -11,6 +11,7 @@ import java.util.List;
  * <p>
  * 相关问题：
  * leetcode 118题 {@link Solution118}
+ * leetcode 120题 {@link com.algorithms.leetcode.medium.Solution120}
  */
 public class Solution119 {
     public List<Integer> getRow(int rowIndex) {
