@@ -28,32 +28,29 @@ import java.util.HashMap;
 public class Solution123 {
     public static void main(String[] args) {
         int[] ints1 = {3, 2, 6, 5, 0, 3};
-        System.out.println(new Solution123().maxProfit(ints1));
+        int[] ints = {3, 3, 5, 0, 0, 3, 1, 4};
+        System.out.println(new Solution123().dp(ints));
     }
 
-    HashMap<Integer, Integer> map = new HashMap<>();
-
-    public int maxProfit(int[] prices) {
-        map = new HashMap<>();
-        int max = 0;
-        for (int i = 0; i < prices.length; i++) {
-            max = Math.max(max, map.get(i) + max(Arrays.copyOfRange(prices, i, prices.length)));
-        }
-        return max;
-    }
-
-    private int max(int[] prices) {
-        if (prices == null || prices.length <= 1) {
+    /**
+     * dp
+     */
+    public int dp(int[] prices) {
+        if (prices.length == 0) {
             return 0;
         }
-        int max = Integer.MIN_VALUE;
-        int min = prices[0];
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] < min) {
-                min = prices[i];
-            }
-            max = Math.max(prices[i] - min, max);
+        int l = prices.length;
+//        定义5种状态：不持有股票：卖出0次，卖出1次，卖出2次；持有股票：卖出0次，卖出1次（已卖出2次则不可能再持有股票）分别为[0,1,2,3,4]。
+        int[][] dp = new int[prices.length][5];
+        dp[0][3] = -prices[0];
+        dp[0][4] = -prices[0];
+        for (int i = 1; i < l; i++) {
+            dp[i][0] = dp[i - 1][0];
+            dp[i][1] = Math.max(dp[i - 1][3] + prices[i], dp[i - 1][1]);
+            dp[i][2] = Math.max(dp[i - 1][4] + prices[i], dp[i - 1][2]);
+            dp[i][3] = Math.max(dp[i - 1][0] - prices[i], dp[i - 1][3]);
+            dp[i][4] = Math.max(dp[i - 1][1] - prices[i], dp[i - 1][4]);
         }
-        return max;
+        return Math.max(dp[l - 1][0], Math.max(dp[l - 1][1], dp[l - 1][2]));
     }
 }
