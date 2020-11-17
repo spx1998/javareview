@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class Solution123 {
     public static void main(String[] args) {
         int[] ints1 = {3, 2, 6, 5, 0, 3};
-        int[] ints = {3, 3, 5, 0, 0, 3, 1, 4};
+        int[] ints = {3, 2, 6, 5, 0, 3};
         System.out.println(new Solution123().dp(ints));
     }
 

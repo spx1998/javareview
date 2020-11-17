@@ -20,28 +20,29 @@ package com.algorithms.leetcode.hard;
  */
 public class Solution188 {
     public static void main(String[] args) {
-        int[] ints = {2, 4, 1};
-        new Solution188().maxProfit(2, ints);
+        int[] ints = {3, 2, 6, 5, 0, 3};
+        System.out.println(new Solution188().maxProfit(2, ints));
     }
 
     public int maxProfit(int k, int[] prices) {
         if (prices.length == 0) {
             return 0;
         }
+
         int[][] dp = new int[prices.length][2 * k + 1];
-        for (int i = 2; i < 2 * k + 1; i += 2) {
+        for (int i = 1; i < 2 * k + 1; i += 2) {
             dp[0][i] = -prices[0];
         }
 
         for (int i = 1; i < prices.length; i++) {
             dp[i][0] = dp[i - 1][0];
             for (int j = 1; j < dp[0].length; j += 2) {
-                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j + 1] + prices[i]);
-                dp[i][j + 1] = Math.max(dp[i - 1][j + 1], dp[i - 1][j - 1] - prices[i]);
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] - prices[i]);
+                dp[i][j + 1] = Math.max(dp[i - 1][j + 1], dp[i - 1][j] + prices[i]);
             }
         }
         int max = 0;
-        for (int i = 1; i < dp[0].length; i += 2) {
+        for (int i = 0; i < dp[0].length; i += 2) {
             max = Math.max(max, dp[dp.length - 1][i]);
         }
         return max;
