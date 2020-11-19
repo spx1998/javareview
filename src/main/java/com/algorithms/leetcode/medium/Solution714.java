@@ -18,6 +18,13 @@ package com.algorithms.leetcode.medium;
  * 0 < prices.length <= 50000.
  * 0 < prices[i] < 50000.
  * 0 <= fee < 50000.
+ * <p>
+ * 相关问题：
+ * leetcode 第121题 {@link com.algorithms.leetcode.easy.Solution121}
+ * leetcode 第122题 {@link com.algorithms.leetcode.easy.Solution122}
+ * leetcode 第123题 {@link com.algorithms.leetcode.hard.Solution123}
+ * leetcode 第188题 {@link com.algorithms.leetcode.hard.Solution188}
+ * leetcode 第309题 {@link com.algorithms.leetcode.medium.Solution309}
  */
 public class Solution714 {
 

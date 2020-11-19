@@ -17,6 +17,13 @@ package com.algorithms.leetcode.hard;
  * 0 <= k <= 109
  * 0 <= prices.length <= 1000
  * 0 <= prices[i] <= 1000
+ * <p>
+ * 相关问题：
+ * leetcode 第121题 {@link com.algorithms.leetcode.easy.Solution121}
+ * leetcode 第122题 {@link com.algorithms.leetcode.easy.Solution122}
+ * leetcode 第123题 {@link com.algorithms.leetcode.hard.Solution123}
+ * leetcode 第309题 {@link com.algorithms.leetcode.medium.Solution309}
+ * leetcode 第714题 {@link com.algorithms.leetcode.medium.Solution714}
  */
 public class Solution188 {
     public static void main(String[] args) {

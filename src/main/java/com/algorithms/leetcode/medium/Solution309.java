@@ -9,6 +9,13 @@ package com.algorithms.leetcode.medium;
  * 输入: [1,2,3,0,2]
  * 输出: 3
  * 解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
+ * <p>
+ * 相关问题：
+ * leetcode 第121题 {@link com.algorithms.leetcode.easy.Solution121}
+ * leetcode 第122题 {@link com.algorithms.leetcode.easy.Solution122}
+ * leetcode 第123题 {@link com.algorithms.leetcode.hard.Solution123}
+ * leetcode 第188题 {@link com.algorithms.leetcode.hard.Solution188}
+ * leetcode 第714题 {@link com.algorithms.leetcode.medium.Solution714}
  */
 public class Solution309 {
     public int maxProfit(int[] prices) {

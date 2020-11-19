@@ -13,7 +13,12 @@ package com.algorithms.leetcode.easy;
  * 输入: [7,6,4,3,1]
  * 输出: 0
  * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
- *
+ * 相关问题：
+ * leetcode 第122题 {@link com.algorithms.leetcode.easy.Solution122}
+ * leetcode 第123题 {@link com.algorithms.leetcode.hard.Solution123}
+ * leetcode 第188题 {@link com.algorithms.leetcode.hard.Solution188}
+ * leetcode 第309题 {@link com.algorithms.leetcode.medium.Solution309}
+ * leetcode 第714题 {@link com.algorithms.leetcode.medium.Solution714}
  */
 public class Solution121 {
     public int maxProfit(int[] prices) {

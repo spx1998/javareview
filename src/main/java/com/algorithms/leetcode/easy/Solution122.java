@@ -22,21 +22,29 @@ package com.algorithms.leetcode.easy;
  * 提示：
  * 1 <= prices.length <= 3 * 10 ^ 4
  * 0 <= prices[i]<= 10 ^ 4
+ * <p>
+ * 相关问题：
+ * leetcode 第121题 {@link com.algorithms.leetcode.easy.Solution121}
+ * leetcode 第123题 {@link com.algorithms.leetcode.hard.Solution123}
+ * leetcode 第188题 {@link com.algorithms.leetcode.hard.Solution188}
+ * leetcode 第309题 {@link com.algorithms.leetcode.medium.Solution309}
+ * leetcode 第714题 {@link com.algorithms.leetcode.medium.Solution714}
  */
 public class Solution122 {
     public int maxProfit(int[] prices) {
         int max = 0;
-        for (int i = 1; i < prices.length ; i++) {
+        for (int i = 1; i < prices.length; i++) {
             if (prices[i] > prices[i - 1]) {
                 max += prices[i] - prices[i - 1];
             }
         }
         return max;
     }
+
     /**
      * 动态规划
      */
-    public int pd(int[] prices){
+    public int pd(int[] prices) {
         int[][] dp = new int[prices.length + 1][2];
         dp[0][1] = -prices[0];
         for (int i = 1; i <= prices.length; i++) {

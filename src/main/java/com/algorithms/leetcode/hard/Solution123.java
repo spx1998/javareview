@@ -24,6 +24,13 @@ import java.util.HashMap;
  * 解释: 在这个情况下, 没有交易完成, 所以最大利润为 0。
  * 我的解法：
  * 区间拆分为两个区间，总区间最大利润即两个区间最大利润之和。超时
+ * <p>
+ * 相关问题：
+ * leetcode 第121题 {@link com.algorithms.leetcode.easy.Solution121}
+ * leetcode 第122题 {@link com.algorithms.leetcode.easy.Solution122}
+ * leetcode 第188题 {@link com.algorithms.leetcode.hard.Solution188}
+ * leetcode 第309题 {@link com.algorithms.leetcode.medium.Solution309}
+ * leetcode 第714题 {@link com.algorithms.leetcode.medium.Solution714}
  */
 public class Solution123 {
     public static void main(String[] args) {

@@ -13,7 +13,7 @@ package com.algorithms.leetcode.easy;
 public class Solution125 {
     public static void main(String[] args) {
 
-//        System.out.println(new Solution125().isPalindrome("race a car"));
+        System.out.println(new Solution125().isPalindrome("race a car"));
         System.out.println(new Solution125().isPalindrome("ab_a"));
     }
 
