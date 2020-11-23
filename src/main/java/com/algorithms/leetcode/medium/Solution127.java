@@ -1,5 +1,8 @@
 package com.algorithms.leetcode.medium;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,13 +30,60 @@ import java.util.List;
  * wordList = ["hot","dot","dog","lot","log"]
  * 输出:0
  * 解释:endWord "cog" 不在字典中，所以无法进行转换。
+ *
+ * 我的解法：
+ * BFS
  */
 public class Solution127 {
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+    public static void main(String[] args) {
+        String a = "hot";
+        String b = "dog";
+        List<String> strings = Arrays.asList("hot", "cog", "dog", "tot", "hog", "hop", "pot", "dot");
+        System.out.println(new Solution127().ladderLength(a, b, strings));
+    }
 
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        wordList = new ArrayList<>(wordList);
+        List<List<String>> processList = new ArrayList<>();
+        int num = 1;
+        List<String> hierarchyList = new ArrayList<>();
+        hierarchyList.add(beginWord);
+        while (!wordList.isEmpty()) {
+            List<String> newHierarchyList = new ArrayList<>();
+            Iterator<String> iterator = wordList.listIterator();
+            num++;
+            while (iterator.hasNext()) {
+                String a = iterator.next();
+                for (String b : hierarchyList) {
+                    if (canTrans(a, b)) {
+                        if (a.equals(endWord)) {
+                            return num;
+                        }
+                        iterator.remove();
+                        newHierarchyList.add(a);
+                        break;
+                    }
+                }
+            }
+            hierarchyList = newHierarchyList;
+            if (hierarchyList.isEmpty()) {
+                return 0;
+            }
+        }
+        return 0;
     }
 
     private boolean canTrans(String a, String b) {
-
+        boolean diffLetter = false;
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i)) {
+                if (diffLetter) {
+                    return false;
+                } else {
+                    diffLetter = true;
+                }
+            }
+        }
+        return diffLetter;
     }
 }
