@@ -33,6 +33,10 @@ import java.util.List;
  *
  * 我的解法：
  * BFS
+ *
+
+ * 相关问题：
+ * leetcode 126 {@link com.algorithms.leetcode.hard.Solution126}
  */
 public class Solution127 {
     public static void main(String[] args) {
@@ -44,7 +48,6 @@ public class Solution127 {
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         wordList = new ArrayList<>(wordList);
-        List<List<String>> processList = new ArrayList<>();
         int num = 1;
         List<String> hierarchyList = new ArrayList<>();
         hierarchyList.add(beginWord);

@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 /**
  * @author sunpengxiang
- *
+ * <p>
  * future可以重复get。
  */
 public class FutureTest {
@@ -22,7 +22,8 @@ public class FutureTest {
             System.out.println("second " + futureTask.get());
             System.out.println("third " + futureTask.get());
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            StackTraceElement[] stackTrace = e.getStackTrace();
+            throw (MyException) e.getCause();
         }
 
 
@@ -33,7 +34,18 @@ public class FutureTest {
         @Override
         public Integer call() throws Exception {
             Thread.sleep(2000);
-            return 1;
+            throw new MyException("myException");
+//            return 1;
         }
+    }
+
+    static class MyException extends RuntimeException {
+
+        String message;
+
+        MyException(String message) {
+            this.message = message;
+        }
+
     }
 }
