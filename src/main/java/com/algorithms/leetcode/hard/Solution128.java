@@ -1,7 +1,6 @@
 package com.algorithms.leetcode.hard;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
