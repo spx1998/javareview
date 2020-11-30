@@ -12,8 +12,8 @@ import com.algorithms.datastructure.TreeNode;
  * *        0
  * *       / \
  * *     -3   9
- * *    /   /
- * * -10  5
+ * *    /    /
+ * * -10    5
  * <p>
  * 解法：
  * 类似108题，但对于链表应该用快慢指针去确定中间值。
