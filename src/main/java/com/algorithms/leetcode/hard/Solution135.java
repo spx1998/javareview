@@ -21,6 +21,11 @@ import java.util.Arrays;
  * 我的解法：
  * 一次遍历，若ratings[i]>ratings[i-1]，则给第i个孩子的糖果为i-1个孩子的数量+1；
  * 否则，给第i个孩子1个糖果，向前遍历，若从后向前递增，则给第i-j个孩子i-j+1个孩子的糖果数+1颗糖果。
+ * 优化解法：
+ * 不需要向前遍历，可以改为遍历两边，一遍从前往后，一遍从后往前。
+ *
+ * 一次遍历，不需要格外空间的解法：
+ *
  */
 public class Solution135 {
     public static void main(String[] args) {
@@ -48,6 +53,9 @@ public class Solution135 {
         return Arrays.stream(cost).sum();
     }
 
+    /**
+     * 两次遍历 O(2*n)
+     */
     public int candy2(int[] ratings) {
         int[] cost = new int[ratings.length];
         for (int i = 0; i < ratings.length; i++) {
@@ -59,7 +67,7 @@ public class Solution135 {
         }
         for (int i = ratings.length - 1; i >= 0; i--) {
             if (i < ratings.length - 1 && ratings[i] > ratings[i + 1]) {
-                cost[i] = cost[i + 1] + 1;
+                cost[i] = Math.max(cost[i + 1] + 1, cost[i]);
             } else if (cost[i] == 0) {
                 cost[i] = 1;
             }
