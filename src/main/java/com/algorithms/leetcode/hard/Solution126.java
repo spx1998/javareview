@@ -59,7 +59,6 @@ public class Solution126 {
                         arrayList.add(a);
                         newHierarchyList.add(arrayList);
                         if (a.equals(endWord)) {
-//                            TODO
                             lists.add(arrayList);
                             bl = false;
                         }

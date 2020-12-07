@@ -7,7 +7,10 @@ package com.algorithms.leetcode.hard;
  * 输入:"aab"
  * 输出: 1
  * 解释: 进行一次分割就可将s 分割成 ["aa","b"] 这样两个回文子串。
- * TODO 解法
+ * 解法：
+ * DP,先利用{@link com.algorithms.leetcode.medium.Solution5}中的做法预处理，建立一个某个子串是否是回文的判断数组。
+ * 然后，建立一维DP数组，下标为从头开始的子串的长度。dp[i]=Min(dp[i-j])+1||0，
+ * 其中j属于[0,i）且s.sub(i-j,i)必须为回文，当整个子串都是回文时dp[i]=0。
  */
 public class Solution132 {
     public int minCut(String s) {

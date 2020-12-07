@@ -33,7 +33,13 @@ package com.algorithms.leetcode.medium;
  * 开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油
  * 你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。
  * 因此，无论怎样，你都不可能绕环路行驶一周。
- * TODO 题解
+ * <p>
+ * 我的解法：
+ * 记录一个新数组，值为gas[i]-cost[i]，从下标某处开始遍历数组，数组元素之和不能小于0，则符合条件；若曾小于0，则从下一下标处重新开始遍历数组。
+ * 解法2：
+ * 数学推导：<a>https://leetcode-cn.com/problems/gas-station/solution/jia-you-zhan-by-leetcode-solution/</a>
+ * 当出现不符合条件的情况时，由解法1中从下一下标处重新开始遍历，转变为从不符合条件处的下一坐标开始遍历。
+ * 结论：
  */
 public class Solution134 {
     public int canCompleteCircuit(int[] gas, int[] cost) {
@@ -51,6 +57,9 @@ public class Solution134 {
                 temp += gas[j];
                 if (temp < 0) {
                     b = false;
+//                    解法2对于解法1的优化，相当于剪枝
+                    i = j;
+
                     break;
                 }
             }

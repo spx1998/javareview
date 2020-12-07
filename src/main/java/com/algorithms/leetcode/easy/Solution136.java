@@ -10,6 +10,10 @@ package com.algorithms.leetcode.easy;
  * 示例2:
  * 输入: [4,1,2,1,2]
  * 输出: 4
+ * 解法：
+ * 利用异或运算的性质，x^x = 0; x^0 = x
+ * <p>
+ * leetcode 第137题 {@link com.algorithms.leetcode.medium.Solution137}
  */
 public class Solution136 {
     public int singleNumber(int[] nums) {

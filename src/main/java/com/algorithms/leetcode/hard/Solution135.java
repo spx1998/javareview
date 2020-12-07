@@ -18,10 +18,15 @@ import java.util.Arrays;
  * 解释: 你可以分别给这三个孩子分发 1、2、1 颗糖果。
  * 第三个孩子只得到 1 颗糖果，这已满足上述两个条件。
  * TODO 题解
+ * 我的解法：
+ * 一次遍历，若ratings[i]>ratings[i-1]，则给第i个孩子的糖果为i-1个孩子的数量+1；
+ * 否则，给第i个孩子1个糖果，向前遍历，若从后向前递增，则给第i-j个孩子i-j+1个孩子的糖果数+1颗糖果。
  */
 public class Solution135 {
     public static void main(String[] args) {
         System.out.println(new Solution135().candy(new int[]{1, 2, 2}));
+        System.out.println(new Solution135().candy2(new int[]{1, 3, 4, 5, 2}));
+
     }
 
     public int candy(int[] ratings) {
@@ -38,6 +43,25 @@ public class Solution135 {
                     }
                     j++;
                 }
+            }
+        }
+        return Arrays.stream(cost).sum();
+    }
+
+    public int candy2(int[] ratings) {
+        int[] cost = new int[ratings.length];
+        for (int i = 0; i < ratings.length; i++) {
+            if (i > 0 && ratings[i] > ratings[i - 1]) {
+                cost[i] = cost[i - 1] + 1;
+            } else if (cost[i] == 0) {
+                cost[i] = 1;
+            }
+        }
+        for (int i = ratings.length - 1; i >= 0; i--) {
+            if (i < ratings.length - 1 && ratings[i] > ratings[i + 1]) {
+                cost[i] = cost[i + 1] + 1;
+            } else if (cost[i] == 0) {
+                cost[i] = 1;
             }
         }
         return Arrays.stream(cost).sum();

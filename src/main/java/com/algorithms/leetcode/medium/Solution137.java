@@ -10,9 +10,18 @@ package com.algorithms.leetcode.medium;
  * 示例2:
  * 输入: [0,1,0,1,0,1,99]
  * 输出: 99
+ * TODO 题解
+ * 相关问题：
+ * leetcode 第136题 {@link com.algorithms.leetcode.easy.Solution136}
  */
 public class Solution137 {
     public int singleNumber(int[] nums) {
-
+        int once = 0;
+        int twice = 0;
+        for (int num : nums) {
+            once = ~twice & (once ^ num);
+            twice = ~once & (twice ^ num);
+        }
+        return once;
     }
 }
