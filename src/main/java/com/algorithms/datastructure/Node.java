@@ -1,5 +1,8 @@
 package com.algorithms.datastructure;
 
+/**
+ * @author sunpengxiang
+ */
 public class Node {
     public int val;
     public Node left;
