@@ -27,9 +27,12 @@ import java.util.HashMap;
  * -10000 <= Node.val <= 10000
  * Node.random为空（null）或指向链表中的节点。
  * 节点数目不超过 1000 。
- *
+ * <p>
  * 我的解法：
  * 用原有node作key，clone的node作value
+ * TODO 解法
+ * 相关问题
+ * leetcode 第133题 {@link Solution133}
  */
 public class Solution138 {
     public static void main(String[] args) {

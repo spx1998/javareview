@@ -21,6 +21,11 @@ import java.util.Map;
  * 无向图是一个简单图，这意味着图中没有重复的边，也没有自环。
  * 由于图是无向的，如果节点 p 是节点 q 的邻居，那么节点 q 也必须是节点 p的邻居。
  * 图是连通图，你可以从给定节点访问到所有节点。
+ *
+ * 我的解法：
+ * DFS
+ * 相关问题：
+ * leetcode 第138题 {@link Solution138}
  */
 public class Solution133 {
     public static void main(String[] args) {
