@@ -27,6 +27,10 @@ import java.util.List;
  *
  * 我的解法2：
  * DP，时间复杂度为O(n^2)
+ *
+ * 相关问题：
+ * leetcode 第132题 {@link com.algorithms.leetcode.hard.Solution132}
+ * leetcode 第140题 {@link com.algorithms.leetcode.hard.Solution140}
  */
 public class Solution139 {
     public static void main(String[] args) {
