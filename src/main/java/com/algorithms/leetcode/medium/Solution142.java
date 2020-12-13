@@ -25,6 +25,14 @@ import com.algorithms.datastructure.ListNode;
  * 链表中节点的数目范围在范围 [0, 104] 内
  * -105 <= Node.val <= 105
  * pos 的值为 -1 或者链表中的一个有效索引
+ * <p>
+ * 解法：
+ * 快慢指针，设没有在环内的距离为x，快慢指针相遇时慢指针走的环内距离为a，环内剩余距离为b。
+ * 则  2 * ( x + a ) = x + n * (a + b ) + a
+ * 整理得 x = n * ( a + b ) - a
+ * 由于 此时两个指针的位置都在a处，则将一个指针fast移回起点，另一个指针slow不同，两者以同样速度移动，
+ * 当fast移动x次到达入环处时，slow在环中的位置为 (a + x ) % ( a + b ),即( n*( a + b ) ) % ( a + b ), 即入环处。
+ * 两指针将在入环处第二次相遇。
  */
 public class Solution142 {
     public ListNode detectCycle(ListNode head) {
