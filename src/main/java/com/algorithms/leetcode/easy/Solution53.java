@@ -1,5 +1,7 @@
 package com.algorithms.leetcode.easy;
 
+import java.util.Stack;
+
 /**
  * 给定一个整数数组nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
  * 示例:
@@ -19,6 +21,7 @@ public class Solution53 {
 
     /**
      * 时间复杂度为n的方法
+     * DP
      *
      * @param nums
      * @return
@@ -37,11 +40,47 @@ public class Solution53 {
     }
 
     /**
-     * TODO 分治法
+     * 分治法
+     * 时间复杂度也是O(n)，是线段树的基础。
+     * 对于每个子区间记录四个值：
+     * lSum 表示 [l, r][l,r] 内以 ll 为左端点的最大子段和
+     * rSum 表示 [l, r][l,r] 内以 rr 为右端点的最大子段和
+     * mSum 表示 [l, r][l,r] 内的最大子段和
+     * iSum 表示 [l, r][l,r] 的区间和
      */
-    public int maxSubArray2(int[] nums) {
-        return 0;
+
+    public class Status {
+        public int lSum, rSum, mSum, iSum;
+
+        public Status(int lSum, int rSum, int mSum, int iSum) {
+            this.lSum = lSum;
+            this.rSum = rSum;
+            this.mSum = mSum;
+            this.iSum = iSum;
+        }
     }
 
+    public int maxSubArray2(int[] nums) {
+        return DFS(0, nums.length - 1, nums).mSum;
+    }
+
+    Status DFS(int left, int right, int[] nums) {
+        if (left == right) {
+            return new Status(nums[left], nums[left], nums[left], nums[left]);
+        }
+        Status lSub = DFS(left, left + (right - left) / 2, nums);
+        Status rSub = DFS(left + (right - left) / 2 + 1, right, nums);
+        return pushUp(lSub, rSub);
+    }
+
+
+    private Status pushUp(Status lSub, Status rSub) {
+        int inum = lSub.iSum + rSub.iSum;
+        int lnum = Math.max(lSub.lSum, lSub.iSum + rSub.lSum);
+        int rnum = Math.max(rSub.rSum, rSub.iSum + lSub.rSum);
+        int mnum = Math.max(Math.max(lSub.mSum, rSub.mSum), lSub.rSum + rSub.lSum);
+
+        return new Status(lnum, rnum, mnum, inum);
+    }
 
 }
