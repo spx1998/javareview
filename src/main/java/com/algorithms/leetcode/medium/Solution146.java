@@ -19,16 +19,20 @@ import java.util.Queue;
  * 0 <= key <= 3000
  * 0 <= value <= 104
  * 最多调用 3 * 10^4 次 get 和 put
- *
- * TODO O（1）解法
+ * <p>
+ * 解法1：
+ * 用一个map存值，一个queue记录使用情况，最近put或get的key从queue中移到队尾。
+ * 解法2：
+ * O(1)的解法。
+ * TODO 解法
  */
 public class Solution146 {
-    class LRUCache {
+    class LRUCache0 {
         Map<Integer, Integer> map;
         Queue<Integer> queue = new LinkedList<>();
         int capacity;
 
-        public LRUCache(int capacity) {
+        public LRUCache0(int capacity) {
             map = new HashMap<>();
             this.capacity = capacity;
         }
@@ -52,6 +56,103 @@ public class Solution146 {
             }
             queue.offer(key);
             map.put(key, value);
+        }
+    }
+
+    /**
+     * O(1)的解法
+     */
+    public static void main(String[] args) {
+        LRUCache lruCache = new Solution146().new LRUCache(2);
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+        System.out.println(lruCache.get(1));
+        lruCache.put(3, 3);
+        System.out.println(lruCache.get(2));
+    }
+
+    class LRUCache {
+        class Node {
+            int key;
+            int value;
+            Node pre;
+            Node next;
+        }
+
+        int capacity;
+
+
+        Map<Integer, Node> map;
+        Node head;
+        Node tail;
+
+
+        public LRUCache(int capacity) {
+            map = new HashMap<>();
+            this.capacity = capacity;
+        }
+
+        public int get(int key) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                if (head != node) {
+                    if (node != tail) {
+                        node.pre.next = node.next;
+                        node.next.pre = node.pre;
+                    } else {
+                        node.pre.next = null;
+                        tail = node.pre;
+                    }
+                    head.pre = node;
+                    node.pre = null;
+                    node.next = head;
+                    head = node;
+                }
+                return node.value;
+            }
+            return -1;
+        }
+
+        public void put(int key, int value) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                node.value = value;
+                if (head != node) {
+                    if (node != tail) {
+                        node.pre.next = node.next;
+                        node.next.pre = node.pre;
+                    } else {
+                        node.pre.next = null;
+                        tail = node.pre;
+                    }
+                    head.pre = node;
+                    node.pre = null;
+                    node.next = head;
+                    head = node;
+                }
+            } else {
+                if (map.size() == capacity) {
+                    map.remove(tail.key);
+                    if (tail.pre != null) {
+                        tail = tail.pre;
+                        tail.next = null;
+                    } else {
+                        tail = null;
+                    }
+                }
+                Node node = new Node();
+                node.key = key;
+                node.value = value;
+                if (head != null) {
+                    node.next = head;
+                    head.pre = node;
+                }
+                head = node;
+                if (tail == null) {
+                    tail = node;
+                }
+                map.put(key, node);
+            }
         }
     }
 }

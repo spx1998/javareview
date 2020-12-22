@@ -29,8 +29,7 @@ import java.util.HashMap;
  * 节点数目不超过 1000 。
  * <p>
  * 我的解法：
- * 用原有node作key，clone的node作value
- * TODO 解法
+ * 用原有node作key，clone的node作value构造一个HashMap。遍历链表，如果random和next的节点已经有clone的节点，则新链表指向它，否则创建一个clone节点，加入map中。
  * 相关问题
  * leetcode 第133题 {@link Solution133}
  */

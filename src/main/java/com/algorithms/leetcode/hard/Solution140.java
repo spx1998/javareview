@@ -37,8 +37,11 @@ import java.util.stream.Collectors;
  * 输出:
  * []
  * <p>
- * <p>
- * TODO 解法
+ * 注意应该先判断能否进行拆分，相当于剪枝。
+ * 解法1：
+ * 回溯法
+ * 解法2：
+ * DP
  * 相关问题
  * leetcode 第139题 {@link com.algorithms.leetcode.medium.Solution139}
  */

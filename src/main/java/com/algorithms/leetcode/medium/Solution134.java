@@ -39,8 +39,6 @@ package com.algorithms.leetcode.medium;
  * 解法2：
  * 数学推导：<a>https://leetcode-cn.com/problems/gas-station/solution/jia-you-zhan-by-leetcode-solution/</a>
  * 当出现不符合条件的情况时，由解法1中从下一下标处重新开始遍历，转变为从不符合条件处的下一坐标开始遍历。
- * 结论：
- * TODO
  */
 public class Solution134 {
     public int canCompleteCircuit(int[] gas, int[] cost) {
