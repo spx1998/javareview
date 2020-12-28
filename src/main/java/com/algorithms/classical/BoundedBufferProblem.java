@@ -22,7 +22,6 @@ public class BoundedBufferProblem {
         @Override
         public void run() {
             while (true) {
-                System.out.println("produce");
                 monitor.insert(1);
             }
         }
@@ -34,7 +33,6 @@ public class BoundedBufferProblem {
         public void run() {
             while (true) {
                 monitor.remove();
-                System.out.println("consume");
             }
         }
     }
@@ -56,6 +54,7 @@ public class BoundedBufferProblem {
             buffer[hi] = item;
             hi = (hi + 1) % capacity;
             count++;
+            System.out.println("produce");
             if (count == 1) {
                 notify();
             }
@@ -67,10 +66,11 @@ public class BoundedBufferProblem {
             }
             int item = buffer[lo];
             lo = (lo + 1) % capacity;
-            if (count == capacity) {
+            count--;
+            System.out.println("consume");
+            if (count == capacity - 1) {
                 notify();
             }
-            count--;
             return item;
         }
 

@@ -24,7 +24,8 @@ import java.util.Queue;
  * 用一个map存值，一个queue记录使用情况，最近put或get的key从queue中移到队尾。
  * 解法2：
  * O(1)的解法。
- * TODO 解法
+ * 构建一个新的数据结构Node，保存存入的每个key，value以及当前节点的preNode和nextNode。用一个hashMap存key和对应的Node。同时用两个指针head和tail存储node链表的头尾节点。
+ * 在每次put和get操作时候，变更node链表的顺序并维护head和tail指针指向正确的节点。在put时，如果lru容器已满则删除tail指向的node。
  */
 public class Solution146 {
     class LRUCache0 {
