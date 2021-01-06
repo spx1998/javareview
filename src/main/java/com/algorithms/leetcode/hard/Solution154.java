@@ -44,7 +44,7 @@ public class Solution154 {
     }
 
     /**
-     * 解法2
+     * 解法2 todo
      */
 //    public int findMin(int[] nums) {
 //        if (nums.length == 0) {
