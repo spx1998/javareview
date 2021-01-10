@@ -21,6 +21,9 @@ import java.util.Arrays;
  * 摩尔投票法 O(n) O(n)
  * 初始候选人cand设为nums[0]，count为0。遍历nums，如果nums[i]==cand，count+1；如果nums[i]!=cand，count-1。
  * 若count变为0，则cand设为当前元素，count重置为1。遍历结束，cand即结果。
+ *
+ * 相关问题：
+ * leetcode 第229题{@link com.algorithms.leetcode.medium.Solution229}
  */
 public class Solution169 {
     /**
