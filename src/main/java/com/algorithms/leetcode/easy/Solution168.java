@@ -27,9 +27,10 @@ import java.util.List;
  */
 public class Solution168 {
     public static void main(String[] args) {
-        System.out.println(new Solution168().convertToTitle(52));
-        System.out.println(new Solution168().convertToTitle(28));
-        System.out.println(new Solution168().convertToTitle(701));
+        System.out.println(new Solution168().convertToTitle(28));//AB
+        System.out.println(new Solution168().convertToTitle(52));//AZ
+        System.out.println(new Solution168().convertToTitle(701));//ZY
+        System.out.println(new Solution168().convertToTitle(702));//ZZ
     }
 
     public String convertToTitle(int n) {
@@ -43,7 +44,19 @@ public class Solution168 {
             n = n / 26;
         }
         Collections.reverse(list);
+        for (int i = list.size() - 1; i > 0; i--) {
+            if (list.get(i) <= 0) {
+                list.set(i - 1, list.get(i - 1) - 1);
+                list.set(i, list.get(i) + 26);
+            }
+        }
         list.forEach(System.out::println);
-        return stringBuilder.reverse().toString();
+        for (int i : list) {
+            if (i != 0) {
+                stringBuilder.append((char) ('A' + i - 1));
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }
