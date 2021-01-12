@@ -24,6 +24,11 @@ import java.util.List;
  * 示例3:
  * 输入: 701
  * 输出: "ZY"
+ * 我的解法：
+ * 十进制向二十六进制转换，注意二十六进制中没有0，所以当从右向左每位出现零时，要向高位借1。
+ * <p>
+ * 相关问题：
+ * leetcode 171题 {@link Solution171}
  */
 public class Solution168 {
     public static void main(String[] args) {
@@ -50,7 +55,6 @@ public class Solution168 {
                 list.set(i, list.get(i) + 26);
             }
         }
-        list.forEach(System.out::println);
         for (int i : list) {
             if (i != 0) {
                 stringBuilder.append((char) ('A' + i - 1));
