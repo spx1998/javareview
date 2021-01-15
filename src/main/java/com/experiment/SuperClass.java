@@ -6,7 +6,6 @@ package com.experiment;
  * @author sunpengxiang
  */
 public class SuperClass {
-
     String superName;
 
     public static void main(String[] args) {
@@ -15,6 +14,7 @@ public class SuperClass {
         SubClass subClass = (SubClass) superClass;
         System.out.println(subClass.superName);
         System.out.println(subClass.subName);
+
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 实现一个二叉搜索树迭代器。你将使用二叉搜索树的根节点初始化迭代器。
@@ -26,6 +27,10 @@ import java.util.Stack;
  * 你可以假设next()调用总是有效的，也就是说，当调用 next()时，BST 中至少存在一个下一个最小的数。
  */
 public class Solution173 {
+    public static void main(String[] args) {
+        ConcurrentHashMap c
+                 = new ConcurrentHashMap(100);
+    }
     /**
      * 中序遍历
      */
