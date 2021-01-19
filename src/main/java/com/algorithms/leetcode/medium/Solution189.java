@@ -22,6 +22,8 @@ package com.algorithms.leetcode.medium;
  * 1 <= nums.length <= 2 * 104
  * -231 <= nums[i] <= 231 - 1
  * 0 <= k <= 105
+ * 我的解法：
+ * O(1)空间复杂度，求step和length的最大公约数m，对于[0,m)遍历，逐个替换。
  */
 public class Solution189 {
     public static void main(String[] args) {
@@ -32,31 +34,25 @@ public class Solution189 {
         if (nums.length == 0 || k % nums.length == 0) {
             return;
         }
-
         int length = nums.length;
         int step = k % length;
-        if (length % step == 0) {
-            for (int i = 0; i < step; i++) {
-                int v = nums[i];
-                int newIndex = i + step;
-                while (newIndex % length != i) {
-                    int temp = nums[newIndex];
-                    nums[newIndex] = v;
-                    v = temp;
-                    newIndex = (newIndex + step) % length;
-                }
-                nums[i] = v;
-            }
-        } else {
-            int v = nums[0];
-            int i = step;
-            while (i % length != 0) {
-                int temp = nums[i];
-                nums[i] = v;
+        int a = length;
+        int b = step;
+        while (a % b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
+        }
+        for (int i = 0; i < b; i++) {
+            int v = nums[i];
+            int newIndex = i + step;
+            while (newIndex % length != i) {
+                int temp = nums[newIndex];
+                nums[newIndex] = v;
                 v = temp;
-                i = (i + step) % length;
+                newIndex = (newIndex + step) % length;
             }
-            nums[0] = v;
+            nums[i] = v;
         }
     }
 }
