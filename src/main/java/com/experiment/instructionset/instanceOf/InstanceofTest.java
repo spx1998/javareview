@@ -6,8 +6,8 @@ package com.experiment.instructionset.instanceOf;
  */
 public class InstanceofTest {
     public static void main(String[] args) {
-        Number i = new Integer(1);
-        System.out.println(i instanceof Integer);
-        System.out.println(i instanceof Number);
+        Integer i = 1;
+        System.out.println(i instanceof Integer);//true
+        System.out.println(i instanceof Number);//true
     }
 }
