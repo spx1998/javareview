@@ -24,6 +24,9 @@ package com.algorithms.leetcode.medium;
  * 0 <= k <= 105
  * 我的解法：
  * O(1)空间复杂度，求step和length的最大公约数m，对于[0,m)遍历，逐个替换。
+ * 方法2：
+ * 数组反转，根据题意一定是[a,...,b,...,c]->[b,...,c,a,...]那么可以
+ * [a,...,b,...,c]->[c,...,b,...a]->[b,...,c,a,...](先整个数组反转，再对两个子区间分别再反转一次)
  */
 public class Solution189 {
     public static void main(String[] args) {
