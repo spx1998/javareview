@@ -21,5 +21,9 @@ public class BinaryTest {
         System.out.println(Integer.toBinaryString(i >> 1));
         System.out.println(Integer.toBinaryString(i >>> 1));
         System.out.println(Integer.toBinaryString(3));
+
+        System.out.println("---------------------左  移----------------------");
+        System.out.println(Integer.toBinaryString(-1));
+        System.out.println((-1) << 2);
     }
 }

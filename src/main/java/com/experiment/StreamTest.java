@@ -8,9 +8,11 @@ public class StreamTest {
     public static void main(String[] args) {
 //        List<List<Integer>> lists = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        list.stream().forEach(o -> {
-            System.out.println(o + 1);
-        });
+        list.add(1);
+        list.add(2);
+        list.forEach(o -> System.out.println(o + 1));
+        list.stream().skip(100).forEach(System.out::println);
+
 //        lists.add(IntStream.range(1, 5).boxed().collect(Collectors.toList()));
 //        lists.add(IntStream.range(5, 10).boxed().collect(Collectors.toList()));
 //        lists.add(IntStream.range(10, 15).boxed().collect(Collectors.toList()));
