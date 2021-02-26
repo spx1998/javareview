@@ -2,9 +2,7 @@ package com.algorithms.tree;
 
 import com.algorithms.datastructure.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author 45779
