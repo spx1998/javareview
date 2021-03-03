@@ -10,6 +10,17 @@ import com.algorithms.datastructure.ListNode;
  */
 public class Solution203 {
     public ListNode removeElements(ListNode head, int val) {
-        return null;
+        ListNode pre = new ListNode(val);
+        ListNode cur = pre;
+        pre.next = head;
+        while (head != null) {
+            if (head.val == val) {
+                cur.next = head.next;
+            } else {
+                cur = cur.next;
+            }
+            head = head.next;
+        }
+        return pre.next;
     }
 }
