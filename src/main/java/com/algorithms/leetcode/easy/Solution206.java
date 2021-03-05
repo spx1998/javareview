@@ -23,7 +23,7 @@ public class Solution206 {
         new Solution206().reverseList(listNode);
     }
 
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseList0(ListNode head) {
         ListNode temp = head;
         head = null;
         while (temp != null) {
@@ -35,4 +35,18 @@ public class Solution206 {
         }
         return head;
     }
+
+//    递归的方式，从后向前逐个翻转。
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseList(head.next);
+//        建立新的链接
+        head.next.next = head;
+//        去掉旧的
+        head.next = null;
+        return newHead;
+    }
+
 }
