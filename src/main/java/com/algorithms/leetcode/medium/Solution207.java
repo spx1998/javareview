@@ -1,10 +1,9 @@
 package com.algorithms.leetcode.medium;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 你这个学期必须选修 numCourses 门课程，记为0到numCourses - 1 。
@@ -25,6 +24,13 @@ import java.util.stream.Collectors;
  * prerequisites[i].length == 2
  * 0 <= ai, bi < numCourses
  * prerequisites[i] 中的所有课程对 互不相同
+ *
+ * 我的解法：
+ * DFS
+ * 1）不要审错题
+ * 2）剪枝，在DFS过程中判断过的记录下来，不要重复遍历。
+ *
+ * TODO 官方解法和BFS做法
  */
 public class Solution207 {
     public static void main(String[] args) {
@@ -40,9 +46,12 @@ public class Solution207 {
         if (prerequisites.length == 0 || prerequisites[0].length == 0) {
             return true;
         }
-        List<Integer> integers = new ArrayList<>();
+        Set<Integer> integers = new HashSet<>();
         for (int[] prerequisite : prerequisites) {
-            boolean check = check(integers, prerequisites, prerequisite[0], new ArrayList<>(Collections.singletonList(prerequisite[0])));
+            if (integers.contains(prerequisite[0])) {
+                continue;
+            }
+            boolean check = DFS(integers, prerequisites, prerequisite[0], new ArrayList<>(Collections.singletonList(prerequisite[0])));
             if (!check) {
                 return false;
             }
@@ -51,7 +60,7 @@ public class Solution207 {
         return true;
     }
 
-    private boolean check(List<Integer> integers, int[][] prerequisites, int num, ArrayList<Integer> list) {
+    private boolean DFS(Set<Integer> integers, int[][] prerequisites, int num, ArrayList<Integer> list) {
         for (int[] prerequisite : prerequisites) {
             if (prerequisite[1] == num) {
                 if (integers.contains(prerequisite[0])) {
@@ -61,13 +70,14 @@ public class Solution207 {
                     return false;
                 }
                 list.add(prerequisite[0]);
-                boolean check = check(integers, prerequisites, prerequisite[0], list);
+                boolean check = DFS(integers, prerequisites, prerequisite[0], list);
                 if (!check) {
                     return false;
                 }
                 list.remove(list.size() - 1);
             }
         }
+        integers.add(num);
         return true;
     }
 }
