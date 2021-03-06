@@ -1,8 +1,5 @@
 package com.algorithms.leetcode.medium;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 实现一个 Trie (前缀树)，包含insert,search, 和startsWith这三个操作。
  * 示例:
@@ -16,6 +13,11 @@ import java.util.List;
  * 说明:
  * 你可以假设所有的输入都是由小写字母a-z构成的。
  * 保证所有输入均为非空字符串。
+ * 我的解法：
+ * 用一个list装所有word
+ *
+ * 正确解法：
+ * 定义一个新的数据结构
  */
 public class Solution208 {
     public static void main(String[] args) {
