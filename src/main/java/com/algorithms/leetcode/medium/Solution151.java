@@ -31,7 +31,9 @@ package com.algorithms.leetcode.medium;
  * 请尝试使用O(1) 额外空间复杂度的原地解法。
  *
  * 解法：
- * todo java 有O(1)的解法吗？
+ * 我的解法：类似于双端队列
+ * 其他解法：翻转再翻转：
+ * an apple -> elppa na -> apple na ->apple an
  */
 public class Solution151 {
     public static void main(String[] args) {

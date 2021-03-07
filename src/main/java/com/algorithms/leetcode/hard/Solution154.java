@@ -44,38 +44,23 @@ public class Solution154 {
     }
 
     /**
-     * 解法2 todo
+     * 解法2 153解法中的前两个判断条件其实是154中的特例，因为不存在相同数，所以可以提前判断；
+     * 要注意的是如果出现中值和边界值相等的情况，边界向中间挪一位重新计算，这样保证不会出现偏差。
      */
-//    public int findMin(int[] nums) {
-//        if (nums.length == 0) {
-//            return 0;
-//        }
-//        if (nums[0] < nums[nums.length - 1]) {
-//            return nums[0];
-//        }
-//        int i = 0;
-//        while (i < nums.length && nums[i] == nums[nums.length - 1]) {
-//            i++;
-//        }
-//        if (i == nums.length - 1) {
-//            return nums[0];
-//        }
-//        int pre = 0;
-//        int tail = nums.length - 1;
-//        while (pre < tail) {
-//            int temp = pre + (tail - pre) / 2;
-//            if (temp != 0 && nums[temp] < nums[temp - 1]) {
-//                return nums[temp];
-//            }
-//            if (temp != nums.length - 1 && nums[temp] > nums[temp + 1]) {
-//                return nums[temp + 1];
-//            }
-//            if (nums[temp] < nums[pre]) {
-//                tail = temp - 1;
-//            } else {
-//                pre = temp + 1;
-//            }
-//        }
-//        return 0;
-//    }
+    public int findMin(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+        while (low < high) {
+            int temp = low + (high - low) / 2;
+            if (nums[temp] < nums[high]) {
+                high = temp;
+            } else if (nums[temp] > nums[high]) {
+                low = temp + 1;
+            } else {
+                high--;
+            }
+        }
+        return nums[low];
+    }
+
 }
