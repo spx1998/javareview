@@ -44,7 +44,7 @@ public class Solution122 {
     /**
      * 动态规划
      */
-    public int pd(int[] prices) {
+    public int dp(int[] prices) {
         int[][] dp = new int[prices.length + 1][2];
         dp[0][1] = -prices[0];
         for (int i = 1; i <= prices.length; i++) {
