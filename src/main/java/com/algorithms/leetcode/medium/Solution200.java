@@ -25,7 +25,8 @@ package com.algorithms.leetcode.medium;
  * n == grid[i].length
  * 1 <= m, n <= 300
  * grid[i][j] 的值为 '0' 或 '1'
- * TODO 题解
+ * 题解：
+ * 新加一个状态2，表示已经遍历过。然后逐个遍历二维数组，0或2则跳过，1则以之为起点，寻找"岛"。递归寻找岛边界。
  */
 public class Solution200 {
     //    2:已遍历过
