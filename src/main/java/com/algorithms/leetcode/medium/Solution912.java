@@ -1,6 +1,8 @@
 package com.algorithms.leetcode.medium;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Solution912 {
 
@@ -198,11 +200,128 @@ public class Solution912 {
         return start;
     }
 
-
     //交换两元素的位置
     private void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    public void countingSort(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int min = nums[0];
+        int max = nums[0];
+        for (int k : nums) {
+            if (k > max) {
+                max = k;
+            }
+            if (k < min) {
+                min = k;
+            }
+        }
+        int[] countArray = new int[max - min];
+        for (int num : nums) {
+            countArray[num - min] += 1;
+        }
+        int index = 0;
+        for (int i = 0; i < countArray.length; i++) {
+            for (int j = countArray[i]; j > 0; j--) {
+                nums[index] = i + min;
+                index++;
+            }
+        }
+    }
+
+    public void bucketSort(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int min = nums[0];
+        int max = nums[0];
+        for (int k : nums) {
+            if (k > max) {
+                max = k;
+            }
+            if (k < min) {
+                min = k;
+            }
+        }
+//        一个桶的大小设为5。
+        int bucketSize = 5;
+        int[][] buckets = new int[(max - min) / bucketSize + 1][0];
+        for (int num : nums) {
+            int index = (num - min) / bucketSize;
+            int[] bucket = buckets[index];
+            bucket = Arrays.copyOf(bucket, bucket.length + 1);
+            bucket[bucket.length - 1] = num;
+            buckets[index] = bucket;
+        }
+        int index = 0;
+        for (int[] arr : buckets) {
+//            每个桶内可以用插入排序，这里是简略写法
+            Arrays.sort(arr);
+            for (int num : arr) {
+                nums[index] = num;
+                index++;
+            }
+        }
+    }
+
+    //    基数排序
+    public void radixSort(int[] nums) {
+        int min = nums[0];
+        int max = nums[0];
+        for (int k : nums) {
+            if (k > max) {
+                max = k;
+            }
+            if (k < min) {
+                min = k;
+            }
+        }
+        int temp = Math.max(Math.abs(min), Math.abs(max));
+        int digit = 0;
+        while (temp != 0) {
+            digit++;
+            temp = temp / 10;
+        }
+        int[][] buckets = new int[10][0];
+        int index;
+        for (int i = 0; i < digit; i++) {
+            for (int num : nums) {
+//                取当前位的值
+                int val = Math.abs(num / (int) (Math.pow(10, i)) % 10);
+                int[] bucket = buckets[val];
+                bucket = Arrays.copyOf(bucket, bucket.length + 1);
+                bucket[bucket.length - 1] = num;
+            }
+            index = 0;
+            for (int[] bucket : buckets) {
+                for (int k : bucket) {
+                    nums[index] = k;
+                    index++;
+                }
+            }
+        }
+//        区分正负数
+        index = 0;
+        for (int i = buckets.length - 1; i >= 0; i--) {
+            for (int j = buckets[i].length; j >= 0; j--) {
+                if (buckets[i][j] < 0) {
+                    nums[index] = buckets[i][j];
+                    index++;
+                }
+            }
+        }
+        for (int[] bucket : buckets) {
+            for (int k : bucket) {
+                if (k >= 0) {
+                    nums[index] = k;
+                    index++;
+                }
+            }
+        }
     }
 }
