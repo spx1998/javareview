@@ -1,9 +1,6 @@
 package com.algorithms.leetcode.medium;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 你这个学期必须选修 numCourses 门课程，记为0到numCourses - 1 。
@@ -58,31 +55,30 @@ public class Solution207 {
         if (prerequisites.length == 0 || prerequisites[0].length == 0) {
             return true;
         }
-        Set<Integer> integers = new HashSet<>();
+        List<Integer> integers = new ArrayList<>();
         for (int[] prerequisite : prerequisites) {
-            if (integers.contains(prerequisite[0])) {
+            if (integers.contains(prerequisite[1])) {
                 continue;
             }
-            boolean check = DFS(integers, prerequisites, prerequisite[0], new ArrayList<>(Collections.singletonList(prerequisite[0])));
+            boolean check = DFS(integers, prerequisites, prerequisite[1], new ArrayList<>(Collections.singletonList(prerequisite[1])));
             if (!check) {
                 return false;
             }
-            integers.add(prerequisite[0]);
         }
         return true;
     }
 
-    private boolean DFS(Set<Integer> integers, int[][] prerequisites, int num, ArrayList<Integer> list) {
+    private boolean DFS(List<Integer> integers, int[][] prerequisites, int num, ArrayList<Integer> list) {
         for (int[] prerequisite : prerequisites) {
-            if (prerequisite[1] == num) {
-                if (integers.contains(prerequisite[0])) {
+            if (prerequisite[0] == num) {
+                if (integers.contains(prerequisite[1])) {
                     continue;
                 }
-                if (list.contains(prerequisite[0])) {
+                if (list.contains(prerequisite[1])) {
                     return false;
                 }
-                list.add(prerequisite[0]);
-                boolean check = DFS(integers, prerequisites, prerequisite[0], list);
+                list.add(prerequisite[1]);
+                boolean check = DFS(integers, prerequisites, prerequisite[1], list);
                 if (!check) {
                     return false;
                 }
