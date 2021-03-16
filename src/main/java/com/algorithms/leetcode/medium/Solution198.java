@@ -22,6 +22,17 @@ package com.algorithms.leetcode.medium;
  * 状态转移方程：
  * dp[i][0] = nums[i] + dp[i - 1][1];
  * dp[i][1] = Math.max(dp[i - 1][0], dp[i - 1][1]);
+ * <p>
+ * 优化解法：
+ * 一维DP。观察上面的两个状态转移方程，可以合并成一个：
+ * dp[0] = nums[0];
+ * dp[1] = Math.max(nums[0],nums[1])
+ * dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1]) 【i>=2】
+ *
+ * 再优化：不用数组，只需要维护两个值就可以了。
+ * 相似问题：
+ * leetcode 第213题 {@link Solution213}
+ * leetcode 第337题 {@link Solution337}
  */
 public class Solution198 {
     public int rob(int[] nums) {

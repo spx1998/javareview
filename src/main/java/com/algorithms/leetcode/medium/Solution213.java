@@ -18,14 +18,23 @@ package com.algorithms.leetcode.medium;
  * 提示：
  * 1 <= nums.length <= 100
  * 0 <= nums[i] <= 1000
+ * 我的解法：
+ * 同198题我的解法的两个转移方程：
+ * DP，观察得到，如果最后一家不偷，则【第一个房屋和最后一个房屋是紧挨着的】的条件没有影响，得到的最大值与198题中的相等；
+ * 如果最后一家偷，那么第一家一定不偷，同时影响到第二家的情况，第二家不偷的情况也不能取Math.max(dp[i - 1][0], dp[i - 1][1])，而一定为dp[0][0]
+ * 为了分别计算两种情况，设置4种状态，分别是不偷最后一家，偷最后一家，得到4个结果，但是要舍去其中的两种。同时要注意nums.length = 1的情况。
+ * <p>
+ * 优化解法：
+ * 把题目拆解成偷第一到倒数第二间房子与偷第二到最后一间房子，分别求最大值，再比较取较大值。
  */
 public class Solution213 {
     public static void main(String[] args) {
         int rob = new Solution213().rob(new int[]{1, 2, 1, 1});
         System.out.println(rob);
     }
+
     public int rob(int[] nums) {
-        if(nums.length==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         int[][] dp = new int[nums.length][4];
