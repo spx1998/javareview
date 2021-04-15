@@ -24,6 +24,8 @@ import java.util.List;
  * 提示:
  * 这个问题相当于查找一个循环是否存在于有向图中。如果存在循环，则不存在拓扑排序，因此不可能选取所有课程进行学习。
  * 拓扑排序也可以通过BFS完成。
+ *
+ * {@link Solution207}
  */
 public class Solution210 {
 

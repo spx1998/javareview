@@ -40,6 +40,8 @@ import java.util.*;
  * DFS：再用一个数组记录每门课被访问的次数，0未访问过，1在当前递归中出现过，如果出现则说明成环了，2已经遍历过，不会成环，为了剪枝。
  * BFS：从入度为0的node开始遍历与之直接相连的node，最终遍历全图，如果所有node都被遍历过说明无环。
  * 因为如果当前图中没有入度为0只有两种情况：所有node都被遍历完；图中剩余节点出现了环。
+ *
+ * {@link Solution210}
  */
 public class Solution207 {
     public static void main(String[] args) {
