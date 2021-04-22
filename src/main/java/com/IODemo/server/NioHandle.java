@@ -72,7 +72,7 @@ public class NioHandle implements Runnable{
                 SocketChannel sc = (SocketChannel) key.channel();
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                 int readBytes = sc.read(byteBuffer);
-                if(readBytes>0){
+                if (readBytes > 0) {
                     byteBuffer.flip();
                     byte[] bytes = new byte[byteBuffer.remaining()];
                     byteBuffer.get(bytes);
