@@ -25,14 +25,13 @@ public class Kmp {
 
     /**
      * Kmp算法
+     * 字符串匹配：在文本串中找模式串
+     * 确定有限状态自动机
      * 对于要匹配的模式串建立一个前缀数组next，每个元素表示到当前元素为止的子串的最长相等前后缀的长度。
      * aabaaac的前缀数组：
      * 0101220
      * 特别的第一个元素设置为0.
      */
-    public static void main(String[] args) {
-        new Kmp().getNext("aabaaac");
-    }
 
     public boolean kmpMatch(String text, String pattern) {
         int[] next = getNext(pattern);
