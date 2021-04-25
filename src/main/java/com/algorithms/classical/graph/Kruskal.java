@@ -23,9 +23,9 @@ public class Kruskal {
         }
         Arrays.sort(edges);
         for (Edge e : edges) {
-            if (!inSameTree(e.w, e.v)) {
+            if (!inSameTree(e.to, e.from)) {
                 weight += e.weight;
-                putInSameTree(e.w, e.v);
+                putInSameTree(e.to, e.from);
             }
         }
     }
