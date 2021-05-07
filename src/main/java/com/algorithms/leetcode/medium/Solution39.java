@@ -19,12 +19,16 @@ import java.util.List;
  * 我的算法：回溯 未剪枝
  * 优化：剪枝
  * 不剪枝时，例如「1，2」 tar = 4， 可能结果有1，1，2 /1，2，1/2，1，1 需要对每一个可能对结果在加入结果list前判断是否已经存在在结果列表中。
- * 剪枝 在回溯的过程中，对于每一个要加入当前list的candidate元素不允许其小于当前candidate值，不允许大于当前target值。例如：
- * <p>
- * <p>
- * *          1，1，1，2  不允许，因为2大于当前tar值1。
+ * 剪枝 在回溯的过程中，对于每一个要加入当前list的candidate元素索引下标不允许其小于当前索引下标，不允许大于当前target值。例如：
+ * 1，1，1，2  不允许，因为2大于当前tar值1。
  * 当前tar值4，3，2，1
  * 2,1 * 是不允许的 因为<b>一定</b>会与之前的结果产生重复。
+ * <p>
+ * 相关问题：
+ * leetcode第39题 {@link Solution39}
+ * leetcode第40题 {@link Solution40}
+ * leetcode第77题 {@link Solution77}
+ * leetcode第216题 {@link Solution216}
  */
 public class Solution39 {
     public static void main(String[] args) {
@@ -66,7 +70,6 @@ public class Solution39 {
     /**
      * 剪枝
      */
-
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> lists = new ArrayList<>();
         doSomething(candidates, 0, target, lists, new ArrayList<>());
