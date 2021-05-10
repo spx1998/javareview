@@ -23,7 +23,7 @@ public class Solution34 {
         Arrays.stream(new Solution34().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8)).forEach(System.out::println);
     }
 
-    public int[] searchRange(int[] nums, int target) {
+    public int[] searchRange0(int[] nums, int target) {
         int[] res = {-1, -1};
         int pre = 0;
         int tail = nums.length - 1;
@@ -54,4 +54,45 @@ public class Solution34 {
             }
         }
     }
+
+    public int[] searchRange(int[] nums, int target) {
+        int[] res = {-1, -1};
+        res[0] = getLeft(nums, target);
+        res[1] = getRight(nums, target);
+        return res;
+    }
+
+
+    private int getLeft(int[] arr, int target) {
+        int head = 0;
+        int tail = arr.length - 1;
+        while (head <= tail) {
+            int temp = head + (tail - head) / 2;
+            if (arr[temp] > target) {
+                tail = temp - 1;
+            } else if (arr[temp] < target) {
+                head = temp + 1;
+            } else {
+                tail = temp - 1;
+            }
+        }
+        return head < arr.length && arr[head] == target ? head : -1;
+    }
+
+    private int getRight(int[] arr, int target) {
+        int head = 0;
+        int tail = arr.length - 1;
+        while (head <= tail) {
+            int temp = head + (tail - head) / 2;
+            if (arr[temp] > target) {
+                tail = temp - 1;
+            } else if (arr[temp] < target) {
+                head = temp + 1;
+            } else {
+                head = temp + 1;
+            }
+        }
+        return tail >= 0 && arr[tail] == target ? arr[target] : -1;
+    }
+
 }

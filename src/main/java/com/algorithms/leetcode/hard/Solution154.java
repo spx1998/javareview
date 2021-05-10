@@ -50,7 +50,7 @@ public class Solution154 {
     public int findMin(int[] nums) {
         int low = 0;
         int high = nums.length - 1;
-        while (low < high) {
+        while (low <= high) {
             int temp = low + (high - low) / 2;
             if (nums[temp] < nums[high]) {
                 high = temp;
