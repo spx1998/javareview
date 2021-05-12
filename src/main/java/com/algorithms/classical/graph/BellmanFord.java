@@ -16,14 +16,18 @@ public class BellmanFord {
     private boolean[] onQueue;
     private Queue<Integer> queue;
 
+    /**
+     * SPFA实现 减少了重复遍历比较未在当前次迭代中变更过的距离
+     */
     public BellmanFord(EdgeWeightedGraph G, int v) {
         vertex = v;
         edgeTo = new Edge[G.V];
         distTo = new double[G.V];
         queue = new LinkedList<>();
         onQueue = new boolean[G.V];
-        for (int i = 0; i < G.V; i++)
+        for (int i = 0; i < G.V; i++) {
             distTo[i] = Double.POSITIVE_INFINITY;
+        }
         distTo[v] = 0;
         onQueue[v] = true;
         queue.offer(v);
