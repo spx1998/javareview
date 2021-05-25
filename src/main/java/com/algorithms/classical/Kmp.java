@@ -1,7 +1,7 @@
 package com.algorithms.classical;
 
 /**
- * 字符串匹配的Kmp算法
+ * 字符串匹配的Kmp算法 TODO BM算法 hash算法？ LSM算法
  */
 public class Kmp {
     /**
