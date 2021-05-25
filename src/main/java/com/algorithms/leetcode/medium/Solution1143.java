@@ -8,6 +8,8 @@ package com.algorithms.leetcode.medium;
  *
  * 相关问题：
  * {@link Solution516}
+ * {@link Solution583}
+ * {@link Solution712}
  */
 public class Solution1143 {
     public int longestCommonSubsequence(String text1, String text2) {
