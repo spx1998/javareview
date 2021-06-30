@@ -18,11 +18,54 @@ import com.algorithms.datastructure.ListNode;
  * 提示：
  * 链表中节点的数目在范围[0, 5 * 104]内
  * -105<= Node.val <= 105
+ * 解法：
+ * 时间复杂度为O(nlogn)的排序算法中，归并排序更适用于链表。
  */
 public class Solution148 {
-//    TODO
     public ListNode sortList(ListNode head) {
-        
-        return null;
+        if (head == null) {
+            return null;
+        }
+        return sortList(head, null);
+    }
+
+    private ListNode sortList(ListNode head, ListNode tail) {
+        if (head.next == tail) {
+            head.next = null;
+            return head;
+        }
+        ListNode mid = head;
+        ListNode doubleMid = head;
+        while (doubleMid != tail) {
+            mid = mid.next;
+            doubleMid = doubleMid.next;
+            if (doubleMid != tail) {
+                doubleMid = doubleMid.next;
+            }
+        }
+        ListNode head1 = sortList(head, mid);
+        ListNode head2 = sortList(mid, tail);
+        return merge(head1, head2);
+    }
+
+    private ListNode merge(ListNode head1, ListNode head2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;
+        while (temp1 != null && temp2 != null) {
+            if (temp1.val <= temp2.val) {
+                temp.next = temp1;
+                temp1 = temp1.next;
+            } else {
+                temp.next = temp2;
+                temp2 = temp2.next;
+            }
+            temp = temp.next;
+        }
+        if (temp1 != null) {
+            temp.next = temp1;
+        } else if (temp2 != null) {
+            temp.next = temp2;
+        }
+        return dummyHead.next;
     }
 }

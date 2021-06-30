@@ -3,6 +3,7 @@ package com.algorithms.leetcode.medium;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
@@ -16,7 +17,7 @@ import java.util.List;
  * 示例2:
  * 输入: num1 = "123", num2 = "456"
  * 输出: "56088"
- *
+ * <p>
  * 相关问题：
  * leetcode 415题 {@link com.algorithms.leetcode.easy.Solution415}
  */
@@ -25,6 +26,8 @@ public class Solution43 {
         System.out.println(new Solution43().multiply("93553535314",
                 "25247452591474"));
     }
+
+
 
     public String multiply(String num1, String num2) {
         List<StringBuilder> stringBuilders = new ArrayList<>();
@@ -55,7 +58,7 @@ public class Solution43 {
         }
         StringBuilder result = new StringBuilder("0");
         for (StringBuilder stringBuilder : stringBuilders) {
-            result =new StringBuilder( addStrings(String.valueOf(result), String.valueOf(stringBuilder)));
+            result = new StringBuilder(addStrings(String.valueOf(result), String.valueOf(stringBuilder)));
         }
         return String.valueOf(result);
     }
