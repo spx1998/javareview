@@ -3,7 +3,7 @@ package com.algorithms.leetcode.hot100;
 /**
  * 给你一个字符串 s，找到 s 中最长的回文子串。
  */
-public class _5LongestPalindromicSubstring {
+public class _05LongestPalindromicSubstring {
     public String longestPalindrome(String s) {
         int start = 0;
         int length = 0;

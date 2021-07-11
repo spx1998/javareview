@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
  */
-public class _3LongestSubstringWithoutRepeatingCharacters {
+public class _03LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         Set<Character> set = new HashSet<>();
         int length = 1;

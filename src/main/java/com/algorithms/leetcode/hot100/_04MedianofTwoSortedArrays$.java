@@ -12,9 +12,9 @@ package com.algorithms.leetcode.hot100;
  * 1）其中一个数组的元素全部小于两个数组中的第k个较小元素，那么直接在另外一个数组中找即可；
  * 2）k值缩小到1，即取两个数组中的第一个元素比较。
  */
-public class _4MedianofTwoSortedArrays$ {
+public class _04MedianofTwoSortedArrays$ {
     public static void main(String[] args) {
-        double medianSortedArrays = new _4MedianofTwoSortedArrays$().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
+        double medianSortedArrays = new _04MedianofTwoSortedArrays$().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
         System.out.println(medianSortedArrays);
     }
 
