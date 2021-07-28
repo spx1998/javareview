@@ -144,7 +144,7 @@ public class Traverse {
 
     /**
      * 实际的栈代替递归栈
-     *
+     * 后序遍历
      * @param root
      * @return
      */

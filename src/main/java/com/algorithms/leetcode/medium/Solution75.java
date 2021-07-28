@@ -66,8 +66,7 @@ public class Solution75 {
                 nums[head++] = 0;
             } else if (nums[cur] == 2) {
                 nums[cur] = nums[tail];
-                nums[tail] = 2;
-                tail--;
+                nums[tail--] = 2;
             } else {
                 cur++;
             }

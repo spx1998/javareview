@@ -1,8 +1,5 @@
 package com.algorithms.leetcode.easy;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 编写一个算法来判断一个数 n 是不是快乐数。
  * 「快乐数」定义为：

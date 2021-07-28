@@ -17,7 +17,7 @@ public class Solution416 {
     }
 
     /**
-     * 解法1：为了验证背包问题的恰好装满的变型的初始化问题，效率低
+     * 解法1：背包问题变形
      */
     public boolean canPartition(int[] nums) {
         int sum = 0;
@@ -40,8 +40,6 @@ public class Solution416 {
                 }
             }
         }
-
-
         return dp[sum][nums.length];
     }
 }
