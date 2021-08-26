@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 返回载到每一个人所需的最小船数。(保证每个人都能被船载)。
  *
  * 解法：
- * 排序
+ * 排序,然后前后双指针即可。
  */
 public class Solution881 {
     public int numRescueBoats(int[] people, int limit) {
