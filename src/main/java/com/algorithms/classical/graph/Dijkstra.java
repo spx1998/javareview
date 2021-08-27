@@ -26,21 +26,17 @@ public class Dijkstra {
         pq.put(0.0, v);
         while (!pq.isEmpty()) {
             Integer remove = pq.remove(pq.firstKey());
-            visit(G, remove);
+            relax(G, remove);
         }
     }
 
-    private void visit(EdgeWeightedGraph g, Integer remove) {
+    private void relax(EdgeWeightedGraph g, Integer remove) {
         for (Edge edge : g.adj[remove]) {
-            relax(edge);
-        }
-    }
-
-    private void relax(Edge edge) {
-        if (edge.weight + distTo[edge.from] < distTo[edge.to]) {
-            edgeTo[edge.to] = edge;
-            distTo[edge.to] = edge.weight + distTo[edge.from];
-            pq.put(edge.weight + distTo[edge.from], edge.to);
+            if (edge.weight + distTo[edge.from] < distTo[edge.to]) {
+                edgeTo[edge.to] = edge;
+                distTo[edge.to] = edge.weight + distTo[edge.from];
+                pq.put(edge.weight + distTo[edge.from], edge.to);
+            }
         }
     }
 }
