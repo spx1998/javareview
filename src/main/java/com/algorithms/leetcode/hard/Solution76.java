@@ -1,5 +1,6 @@
 package com.algorithms.leetcode.hard;
 
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,40 +22,6 @@ public class Solution76 {
         System.out.println(new Solution76().minWindow("ADOBECODEBANC", "ABC"));
     }
 
-    /**
-     * 我的解法 超时
-     */
-    public String minWindow(String s, String t) {
-        int tail = 0, head = 0;
-        int minT = Integer.MAX_VALUE, minH = 0;
-        while (tail < s.length()) {
-            while (tail < s.length() && !check(s.substring(head, tail + 1), t)) {
-                tail++;
-            }
-            while (tail < s.length() && check(s.substring(head, tail + 1), t)) {
-                if (tail - head < minT - minH) {
-                    minH = head;
-                    minT = tail;
-                }
-                head++;
-            }
-        }
-        return minT == Integer.MAX_VALUE ? "" : s.substring(minH, minT + 1);
-    }
-
-    private boolean check(String s, String t) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
-        }
-        for (char c : t.toCharArray()) {
-            if (!map.containsKey(c) || map.get(c) == 0) {
-                return false;
-            }
-            map.put(c, map.get(c) - 1);
-        }
-        return true;
-    }
 
 
     /**
@@ -63,7 +30,7 @@ public class Solution76 {
     Map<Character, Integer> ori = new HashMap<>();
     Map<Character, Integer> cnt = new HashMap<>();
 
-    public String minWindow2(String s, String t) {
+    public String minWindow(String s, String t) {
         int tLen = t.length();
         for (int i = 0; i < tLen; i++) {
             char c = t.charAt(i);

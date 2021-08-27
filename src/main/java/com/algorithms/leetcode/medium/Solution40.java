@@ -15,8 +15,14 @@ import java.util.List;
  * 解集不能包含重复的组合。
  * 我的解法：回溯
  * 优化：代码中
+ *
+ *
+ *
  * 相关问题：
- * leetcode 39题 {@link Solution39}
+ * leetcode第39题 {@link Solution39}
+ * leetcode第40题 {@link Solution40}
+ * leetcode第77题 {@link Solution77}
+ * leetcode第216题 {@link Solution216}
  */
 public class Solution40 {
     public static void main(String[] args) {
@@ -49,7 +55,6 @@ public class Solution40 {
              *  2   2
              *  两种可能，i>Index保证不会剪去第一种可能，candidates[i]==candidates[i-1]减去第二种可能。
              */
-
             if (i > index && candidates[i] == candidates[i - 1]) {
                 continue;
             }

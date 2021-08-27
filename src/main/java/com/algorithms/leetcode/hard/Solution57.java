@@ -17,12 +17,12 @@ import java.util.List;
  * 解释：这是因为新的区间 [4,8] 与 [3,5],[6,7],[8,10]重叠。
  * 我的解法：
  * 插入新数组，然后做法与56题一致。
- *
+ * <p>
  * 相关问题：
  * leetcode 56题 {@link com.algorithms.leetcode.medium.Solution56}
  */
 public class Solution57 {
-    public int[][] insert(int[][] intervals, int[] newInterval) {
+    public int[][] insert0(int[][] intervals, int[] newInterval) {
         List<int[]> list = new ArrayList<>(Arrays.asList(intervals));
         list.add(newInterval);
         list.sort(Comparator.comparingInt(o -> o[0]));
@@ -34,5 +34,33 @@ public class Solution57 {
             }
         }
         return list.toArray(new int[list.size()][2]);
+    }
+
+    /**
+     * 不取巧的做法
+     */
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int left = newInterval[0];
+        int right = newInterval[1];
+        boolean placed = false;
+        List<int[]> resList = new ArrayList<>();
+        for (int[] interval : intervals) {
+            if (interval[0] > right) {
+                if (!placed) {
+                    resList.add(new int[]{left, right});
+                    placed = true;
+                }
+                resList.add(interval);
+            } else if (interval[1] < left) {
+                resList.add(interval);
+            } else {
+                left = Math.min(interval[0], left);
+                right = Math.max(right, interval[1]);
+            }
+        }
+        if (!placed) {
+            resList.add(new int[]{left, right});
+        }
+        return resList.toArray(new int[resList.size()][2]);
     }
 }

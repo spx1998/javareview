@@ -26,7 +26,7 @@ public class Solution153 {
         if (nums[tail] > nums[0]) {
             return nums[0];
         }
-        while (pre < tail) {
+        while (pre <= tail) {
             int temp = pre + (tail - pre) / 2;
             if (temp != 0 && nums[temp] < nums[temp - 1]) {
                 return nums[temp];

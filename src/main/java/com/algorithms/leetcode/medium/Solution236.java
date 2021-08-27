@@ -40,7 +40,7 @@ public class Solution236 {
     private final List<TreeNode> qList = new ArrayList<>();
     private final Stack<TreeNode> stack = new Stack<>();
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q) {
         dfs(root, p, q);
         for (int i = 0; i < pList.size(); i++) {
             if (i >= qList.size()) {
@@ -73,7 +73,7 @@ public class Solution236 {
     /**
      * 解法2：优化写法
      */
-    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
         }

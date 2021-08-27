@@ -16,6 +16,8 @@ package com.algorithms.leetcode.medium;
  * dp解法：
  * 二维DP数组，第一个维度为子串的初始字符，第二个维度为子串的结束字符。dp[i][j]是回文的必要条件是dp[i+1][j-1]是回文。
  * 值得注意的是，一般的DP往往是由某一个维度中的前一个状态转向后一个，但这里是由后一个转向前一个。
+ *
+ * 马拉车解法(manacher) ：{@link com.algorithms.classical.Manacher}
  */
 public class Solution5 {
     public static void main(String[] args) {

@@ -1,7 +1,9 @@
 package com.algorithms.classical;
 
+import java.util.Arrays;
+
 /**
- * 字符串匹配的Kmp算法
+ * 字符串匹配的Kmp算法 TODO BM算法 hash算法？ LSM算法
  */
 public class Kmp {
     /**
@@ -51,6 +53,9 @@ public class Kmp {
         return false;
     }
 
+    public static void main(String[] args) {
+        Arrays.stream(new Kmp().getNext("abcabaabc")).forEach(System.out::println);
+    }
 
     /**
      * @param pattern 模式串

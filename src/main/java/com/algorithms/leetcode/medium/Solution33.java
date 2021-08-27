@@ -20,7 +20,7 @@ public class Solution33 {
     public static void main(String[] args) {
 //        System.out.println(new Solution33().search2(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
 //        System.out.println(new Solution33().search2(new int[]{5, 1, 3}, 5));
-        System.out.println(new Solution33().search2(new int[]{3,1}, 1));
+        System.out.println(new Solution33().search(new int[]{3,1}, 1));
 //        System.out.println(new Solution33().search(new int[]{1, 3}, 0));
 
     }
@@ -28,7 +28,7 @@ public class Solution33 {
     /**
      * 我的解法
      */
-    public int search(int[] nums, int target) {
+    public int search0(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
         }
@@ -82,7 +82,7 @@ public class Solution33 {
     /**
      * 直接查找target的解法
      */
-    public int search2(int[] nums, int target) {
+    public int search(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
         }
@@ -95,7 +95,8 @@ public class Solution33 {
             int temp = pre + (tail - pre) / 2;
             if (target == nums[temp]) {
                 return temp;
-            } else if (nums[pre] <= nums[temp]) {
+            }
+            if (nums[pre] <= nums[temp]) {
                 if (target >= nums[pre] && target <= nums[temp]) {
                     tail = temp - 1;
                 } else {

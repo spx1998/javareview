@@ -1,5 +1,6 @@
 package com.algorithms.leetcode.hard;
 
+import com.algorithms.leetcode.medium.Solution43;
 import com.algorithms.leetcode.medium.Solution503;
 import com.algorithms.leetcode.medium.Solution739;
 
@@ -31,14 +32,13 @@ import java.util.Stack;
  * leetcode503题 {@link Solution503}
  * leetcode739题 {@link Solution739}
  */
-public class Solution42 {
+public class Solution42  {
     public static void main(String[] args) {
 //        int[] ints = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         System.out.println(new Solution42().stackTrap(new int[]{4, 2, 3}));
-
     }
 
-    public int trap(int[] height) {
+    public int trap0(int[] height) {
         Stack<Integer> stack1 = new Stack<>();
         Stack<Integer> stack2 = new Stack<>();
         int rain = 0;
@@ -128,6 +128,32 @@ public class Solution42 {
                 }
                 if (!stack.empty()) {
                     res += Math.max(0, i - stack.peek() - 1) * (height[i] - temp);
+                }
+            }
+            stack.push(i);
+        }
+        return res;
+    }
+
+    /**
+     * 又写了一遍 单调栈
+     */
+    public int trap(int[] height) {
+        int res = 0;
+        if (height.length == 0 || height.length == 1 || height.length == 2) {
+            return 0;
+        }
+        Stack<Integer> stack = new Stack<>();
+        stack.push(0);
+        for (int i = 1; i < height.length; i++) {
+            Integer peek = stack.peek();
+            if (height[i] >= height[peek])  {
+                while (!stack.empty() && height[i] > height[peek]) {
+                    Integer pop = stack.pop();
+                    if (!stack.empty()) {
+                        peek = stack.peek();
+                        res += (Math.min(height[peek], height[i]) - height[pop]) * (i - peek - 1);
+                    }
                 }
             }
             stack.push(i);

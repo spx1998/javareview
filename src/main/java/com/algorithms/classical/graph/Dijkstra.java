@@ -20,8 +20,9 @@ public class Dijkstra {
         edgeTo = new Edge[G.V];
         distTo = new double[G.V];
         pq = new TreeMap<>();
-        for (int i = 0; i < G.V; i++)
+        for (int i = 0; i < G.V; i++) {
             distTo[i] = Double.POSITIVE_INFINITY;
+        }
         distTo[v] = 0;
         pq.put(0.0, v);
         while (!pq.isEmpty()) {

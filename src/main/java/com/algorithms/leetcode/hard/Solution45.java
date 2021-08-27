@@ -61,4 +61,27 @@ public class Solution45 {
         }
         return step;
     }
+
+    /**
+     * 解法3 2的另一种写法
+     */
+    public int jump3(int[] nums){
+        int step = 0;
+        int bound = 0;
+        int start = 0;
+        if (nums.length == 0) {
+            return 0;
+        }
+        while (bound < nums.length - 1) {
+            step++;
+            int newBound = bound;
+            for (; start <= bound; start++) {
+                if (newBound < start + nums[start]) {
+                    newBound = start + nums[start];
+                }
+            }
+            bound = newBound;
+        }
+        return step;
+    }
 }
